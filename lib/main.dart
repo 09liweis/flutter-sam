@@ -3,8 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:provider/provider.dart';
 
-import './services/todo_service.dart';
 import './models/todo.dart';
+import './screens/add_todo_page.dart';
+import './providers/todo_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,29 +29,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TodoProvider extends ChangeNotifier {
-  List<Task> tasks = [];
-
-  Future<void> fetchTasks() async {
-    try {
-      tasks = await TodoService.fetchTasks();
-      notifyListeners();
-    } catch (error) {
-      throw Exception('Failed to fetch tasks: $error');
-    }
-  }
-
-  void addTask(Task task) {
-    tasks.add(task);
-    notifyListeners();
-  }
-
-  void removeTaskAtIndex(int index) {
-    tasks.removeAt(index);
-    notifyListeners();
-  }
-}
-
 class TodoScreen extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
 
@@ -59,8 +37,6 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<TodoProvider>(context);
-
-    todoProvider.fetchTasks();
 
     return Scaffold(
       appBar: AppBar(
@@ -74,6 +50,7 @@ class TodoScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final task = todoProvider.tasks[index];
                 return ListTile(
+                  leading: const Icon(Icons.list),
                   title: Text(task.name),
                   subtitle: Text('Status: ${task.status.toString()}'),
                   trailing: IconButton(
@@ -96,6 +73,13 @@ class TodoScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
