@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:provider/provider.dart';
 
+import './services/todo_service.dart';
 import './models/todo.dart';
 
 void main() {
@@ -31,14 +32,11 @@ class TodoProvider extends ChangeNotifier {
   List<Task> tasks = [];
 
   Future<void> fetchTasks() async {
-    final response =
-        await http.get(Uri.parse('https://samliweisen.onrender.com/api/todos'));
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      tasks = List<Task>.from(jsonData.map((task) => Task.fromJson(task)));
+    try {
+      tasks = await TodoService.fetchTasks();
       notifyListeners();
-    } else {
-      throw Exception('Failed to fetch tasks');
+    } catch (error) {
+      throw Exception('Failed to fetch tasks: $error');
     }
   }
 
@@ -61,6 +59,8 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<TodoProvider>(context);
+
+    todoProvider.fetchTasks();
 
     return Scaffold(
       appBar: AppBar(
