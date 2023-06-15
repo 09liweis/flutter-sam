@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:fluttersam/models/todo.dart';
+import '../screens/add_todo_page.dart';
 
 class TodoList extends StatelessWidget {
   final List<Task> tasks;
@@ -16,6 +17,10 @@ class TodoList extends StatelessWidget {
       itemBuilder: (context, index) {
         final task = tasks[index];
         return ListTile(
+          onTap: () => {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddTodoScreen()))
+          },
           leading: const Icon(Icons.list),
           title: Text(
             task.name,
@@ -26,10 +31,14 @@ class TodoList extends StatelessWidget {
           ),
           subtitle: Text(
             task.date,
-            style: const TextStyle(color: Colors.cyan),
+            style: const TextStyle(color: Colors.cyan, fontSize: 15),
           ),
           trailing: IconButton(
-            icon: const Icon(Icons.delete),
+            icon: const Icon(
+              Icons.delete,
+              color: Colors.red,
+              size: 30,
+            ),
             onPressed: () {
               onPressed(index);
             },
