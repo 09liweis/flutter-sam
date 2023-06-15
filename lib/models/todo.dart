@@ -11,6 +11,10 @@ class Task {
     required this.date,
   });
 
+  bool isDone() {
+    return status == 'done';
+  }
+
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       id: json['_id'],

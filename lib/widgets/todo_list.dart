@@ -20,7 +20,7 @@ class TodoList extends StatelessWidget {
           title: Text(
             task.name,
             style: TextStyle(
-                decoration: (task.status == 'done')
+                decoration: (task.isDone())
                     ? TextDecoration.lineThrough
                     : TextDecoration.none),
           ),
