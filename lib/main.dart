@@ -1,92 +1,102 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+import './models/todo.dart';
+
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static const String _title = 'Flutter Stateful Clicker Counter';
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => TodoProvider(),
+      child: MaterialApp(
+        title: 'Todo App',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: TodoScreen(),
       ),
-      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-  // This class is the configuration for the state.
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
+class TodoProvider extends ChangeNotifier {
+  List<Task> tasks = [];
+
+  Future<void> fetchTasks() async {
+    final response =
+        await http.get(Uri.parse('https://samliweisen.onrender.com/api/todos'));
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      tasks = List<Task>.from(jsonData.map((task) => Task.fromJson(task)));
+      notifyListeners();
+    } else {
+      throw Exception('Failed to fetch tasks');
+    }
+  }
+
+  void addTask(Task task) {
+    tasks.add(task);
+    notifyListeners();
+  }
+
+  void removeTaskAtIndex(int index) {
+    tasks.removeAt(index);
+    notifyListeners();
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class TodoScreen extends StatelessWidget {
+  final TextEditingController _textEditingController = TextEditingController();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  TodoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final todoProvider = Provider.of<TodoProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('Flutter Demo Click Counter'),
+        title: const Text('Todo App'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: todoProvider.tasks.length,
+              itemBuilder: (context, index) {
+                final task = todoProvider.tasks[index];
+                return ListTile(
+                  title: Text(task.name),
+                  subtitle: Text('Status: ${task.status.toString()}'),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      todoProvider.removeTaskAtIndex(index);
+                    },
+                  ),
+                );
+              },
             ),
-            Text(
-              '$_counter',
-              style: TextStyle(fontSize: 25),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                todoProvider.fetchTasks();
+              },
+              child: const Text('Fetch Tasks'),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
 }
-
