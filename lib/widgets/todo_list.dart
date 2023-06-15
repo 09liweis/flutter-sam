@@ -24,7 +24,10 @@ class TodoList extends StatelessWidget {
                     ? TextDecoration.lineThrough
                     : TextDecoration.none),
           ),
-          subtitle: Text('Status: ${task.status}'),
+          subtitle: Text(
+            task.date,
+            style: const TextStyle(color: Colors.cyan),
+          ),
           trailing: IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
