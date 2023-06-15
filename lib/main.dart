@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import './models/todo.dart';
 import './screens/add_todo_page.dart';
 import './providers/todo_provider.dart';
+import './widgets/todo_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,24 +46,10 @@ class TodoScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: todoProvider.tasks.length,
-              itemBuilder: (context, index) {
-                final task = todoProvider.tasks[index];
-                return ListTile(
-                  leading: const Icon(Icons.list),
-                  title: Text(task.name),
-                  subtitle: Text('Status: ${task.status.toString()}'),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      todoProvider.removeTaskAtIndex(index);
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
+              child: TodoList(
+            tasks: todoProvider.tasks,
+            onPressed: todoProvider.removeTaskAtIndex,
+          )),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
