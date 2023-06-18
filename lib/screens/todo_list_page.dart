@@ -14,9 +14,9 @@ class TodoScreen extends StatelessWidget {
     final todoProvider = Provider.of<TodoProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todo App'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Todo App'),
+      // ),
       body: Column(
         children: [
           Expanded(
