@@ -1,10 +1,10 @@
-class Task {
+class Todo {
   final String id;
   final String name;
   final String status;
   final String date;
 
-  Task({
+  Todo({
     required this.id,
     required this.name,
     required this.status,
@@ -15,8 +15,8 @@ class Task {
     return status == 'done';
   }
 
-  factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(
+  factory Todo.fromJson(Map<String, dynamic> json) {
+    return Todo(
       id: json['_id'],
       name: json['name'],
       status: json['status'],

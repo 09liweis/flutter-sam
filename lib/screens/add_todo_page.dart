@@ -37,7 +37,7 @@ class AddTodoScreen extends StatelessWidget {
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                final newTodo = Task(
+                final newTodo = Todo(
                     id: (todoProvider.tasks.length + 1).toString(),
                     name: _textEditingController.text,
                     status: 'pending',

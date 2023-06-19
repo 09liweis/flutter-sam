@@ -4,7 +4,7 @@ import '../services/todo_service.dart';
 import '../models/todo.dart';
 
 class TodoProvider extends ChangeNotifier {
-  List<Task> tasks = [];
+  List<Todo> tasks = [];
   bool loading = false;
 
   Future<void> fetchTasks() async {
@@ -19,7 +19,7 @@ class TodoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addTask(Task task) {
+  void addTask(Todo task) {
     tasks.insert(0, task);
     // tasks.add(task);
     notifyListeners();

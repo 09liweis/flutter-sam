@@ -5,7 +5,7 @@ import 'package:fluttersam/models/todo.dart';
 import '../screens/add_todo_page.dart';
 
 class TodoList extends StatelessWidget {
-  final List<Task> tasks;
+  final List<Todo> tasks;
   final Function(int) onPressed;
 
   TodoList({required this.tasks, required this.onPressed});
