@@ -20,10 +20,12 @@ class TodoScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: TodoList(
-            tasks: todoProvider.tasks,
-            onPressed: todoProvider.removeTaskAtIndex,
-          )),
+              child: todoProvider.loading
+                  ? const Center(child: CircularProgressIndicator())
+                  : TodoList(
+                      tasks: todoProvider.tasks,
+                      onPressed: todoProvider.removeTaskAtIndex,
+                    )),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(

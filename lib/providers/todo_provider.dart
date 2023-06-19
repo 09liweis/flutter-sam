@@ -5,14 +5,18 @@ import '../models/todo.dart';
 
 class TodoProvider extends ChangeNotifier {
   List<Task> tasks = [];
+  bool loading = false;
 
   Future<void> fetchTasks() async {
+    loading = true;
+    notifyListeners();
     try {
       tasks = await TodoService.fetchTasks();
-      notifyListeners();
     } catch (error) {
       throw Exception('Failed to fetch tasks: $error');
     }
+    loading = false;
+    notifyListeners();
   }
 
   void addTask(Task task) {
