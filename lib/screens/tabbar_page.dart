@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'todo_list_page.dart';
+import 'expense_list_page.dart';
 
 class TabbarScreen extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class _TabbarScreenState extends State<TabbarScreen>
         children: [
           // Add your tab views here
           TodoScreen(),
-          TodoScreen(),
+          ExpenseListScreen(),
           TodoScreen()
         ],
       ),
@@ -46,21 +47,18 @@ class _TabbarScreenState extends State<TabbarScreen>
               Icons.home,
               color: Colors.amber,
             ),
-            text: 'Tab 1',
           ),
           Tab(
             icon: Icon(
-              Icons.search,
-              color: Colors.amber,
+              Icons.money_outlined,
+              color: Colors.red,
             ),
-            text: 'Tab 2',
           ),
           Tab(
             icon: Icon(
               Icons.person,
               color: Colors.amber,
             ),
-            text: 'Tab 3',
           ),
         ],
       ),
