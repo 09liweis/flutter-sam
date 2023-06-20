@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/screens/login_page.dart';
 
 import 'todo_list_page.dart';
 import 'expense_list_page.dart';
@@ -36,7 +37,7 @@ class _TabbarScreenState extends State<TabbarScreen>
           // Add your tab views here
           TodoScreen(),
           ExpenseListScreen(),
-          TodoScreen()
+          LoginScreen()
         ],
       ),
       bottomNavigationBar: TabBar(
@@ -57,7 +58,7 @@ class _TabbarScreenState extends State<TabbarScreen>
           Tab(
             icon: Icon(
               Icons.person,
-              color: Colors.amber,
+              color: Colors.green,
             ),
           ),
         ],
