@@ -26,6 +26,22 @@ class DashboardScreen extends StatelessWidget {
               onTap: () {
                 // Handle the onTap action for Blogs block
               },
+              child: const CardBlock(title: 'Movies'),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                // Handle the onTap action for Comments block
+              },
+              child: const CardBlock(title: 'Expenses'),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                // Handle the onTap action for Comments block
+              },
               child: const CardBlock(title: 'Blogs'),
             ),
           ),
@@ -34,7 +50,23 @@ class DashboardScreen extends StatelessWidget {
               onTap: () {
                 // Handle the onTap action for Comments block
               },
+              child: const CardBlock(title: 'Places'),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                // Handle the onTap action for Comments block
+              },
               child: const CardBlock(title: 'Comments'),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                // Handle the onTap action for Comments block
+              },
+              child: const CardBlock(title: 'Test'),
             ),
           ),
         ],
