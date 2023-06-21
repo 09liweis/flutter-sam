@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/screens/dashboard_screen.dart';
 import 'package:fluttersam/screens/login_page.dart';
-
-import 'todo_list_page.dart';
-import 'expense_list_page.dart';
+import 'package:fluttersam/screens/profile_screen.dart';
+import 'package:fluttersam/screens/tiktok_screen.dart';
+import 'package:fluttersam/utils/share_preferences.dart';
 
 class TabbarScreen extends StatefulWidget {
   @override
@@ -12,11 +13,20 @@ class TabbarScreen extends StatefulWidget {
 class _TabbarScreenState extends State<TabbarScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  Widget userScreen = LoginScreen();
+
+  setUserScreen() async {
+    String? userToken = await SharedPreferencesHelper.getUserToken();
+    if (userToken != null) {
+      userScreen = ProfileScreen();
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    setUserScreen();
   }
 
   @override
@@ -29,15 +39,15 @@ class _TabbarScreenState extends State<TabbarScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tab Navigation'),
+        title: const Text('Sam\'s Flutter App'),
       ),
       body: TabBarView(
         controller: _tabController,
         children: [
           // Add your tab views here
-          TodoScreen(),
-          ExpenseListScreen(),
-          LoginScreen()
+          DashboardScreen(),
+          TikTokScreen(),
+          userScreen
         ],
       ),
       bottomNavigationBar: TabBar(
