@@ -5,11 +5,11 @@ import './screens/tabbar_page.dart';
 import './providers/todo_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const SamApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SamApp extends StatelessWidget {
+  const SamApp({super.key});
 
   @override
   Widget build(BuildContext context) {
