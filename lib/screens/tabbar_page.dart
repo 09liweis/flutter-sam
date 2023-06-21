@@ -61,7 +61,8 @@ class _TabbarScreenState extends State<TabbarScreen>
           ),
           Tab(
             icon: Icon(
-              Icons.money_outlined,
+              size: 30,
+              Icons.video_call,
               color: Colors.red,
             ),
           ),
