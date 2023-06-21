@@ -55,7 +55,7 @@ class _TikTokVideoState extends State<TikTokVideo> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 12.0),
+              padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 12),
               color: Colors.black54,
               child: Text(
                 widget.text,
