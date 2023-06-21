@@ -5,12 +5,15 @@ import 'package:fluttersam/widgets/card.dart';
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
+    final columnsCount = deviceWidth > 600 ? 3 : 2;
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Dashboard'),
       // ),
       body: GridView.count(
-        crossAxisCount: 2,
+        crossAxisCount: columnsCount,
         children: [
           Card(
             child: InkWell(
