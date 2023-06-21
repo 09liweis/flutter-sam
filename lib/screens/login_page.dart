@@ -1,6 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:fluttersam/screens/profile_screen.dart';
+import 'package:fluttersam/utils/share_preferences.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../widgets/dialog.dart';
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String password = _passwordController.text;
 
     if (username.isEmpty || password.isEmpty) {
-      print(username);
+      showComfirmDialog('username or passowrd is empty');
       return;
     }
 
@@ -47,8 +47,13 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         // Login successful
         var responseData = jsonDecode(response.body);
-        print(responseData);
-        // Do something with the response data
+        SharedPreferencesHelper.setUserToken(responseData['token']);
+
+        // Navigate to the profile screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => ProfileScreen()),
+        );
       } else {
         // Login failed
         var error = jsonDecode(response.body)['msg'];
@@ -73,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Login',
+              'Please Login',
               style: TextStyle(
                   fontSize: 30, fontFamily: 'Roboto', color: Colors.green),
             ),
@@ -90,8 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               obscureText: true,
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 40.0),
             ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.amber)),
               child: const Text('Login'),
               onPressed: _login,
             ),
