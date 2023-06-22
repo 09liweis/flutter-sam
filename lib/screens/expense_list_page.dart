@@ -52,11 +52,22 @@ class ExpenseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () => {print(category)},
-      leading: const CircleAvatar(
-        child: Icon(Icons.food_bank),
-      ),
+      // leading: const CircleAvatar(
+      //   child: Icon(Icons.food_bank),
+      // ),
       title: Text(category),
-      subtitle: Text(date),
+      subtitle: ListView.builder(
+        shrinkWrap: true,
+        physics: ClampingScrollPhysics(),
+        itemCount: 3,
+        itemBuilder: (context, nestedIndex) {
+          return ListTile(
+            title: Text('Nested Item $nestedIndex'),
+            leading: Icon(Icons.foggy),
+            trailing: Text('345'),
+          );
+        },
+      ),
       trailing: Text(
         '\$$amount',
         style: const TextStyle(
