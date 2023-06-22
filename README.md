@@ -1,4 +1,4 @@
-# click_counter
+# Flutter Sam
 
 A new Flutter project created with https://flutlab.io
 
