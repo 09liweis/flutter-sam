@@ -1,13 +1,11 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:fluttersam/services/api_service.dart';
 
 import '../models/todo.dart';
 
-class TodoService {
-  static const String baseUrl = 'https://samliweisen.onrender.com/api';
-
+class TodoService extends ApiService {
   static Future<List<Todo>> fetchTasks() async {
-    final response = await http.get(Uri.parse('$baseUrl/todos'));
+    final response = await ApiService.get('todos');
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       return List<Todo>.from(jsonData.map((task) => Todo.fromJson(task)));
