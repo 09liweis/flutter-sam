@@ -12,6 +12,9 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<TodoProvider>(context);
+    if (todoProvider.tasks.isEmpty) {
+      todoProvider.fetchTasks(); //TODO: EXCEPTION CAUGHT
+    }
 
     return Scaffold(
       appBar: AppBar(

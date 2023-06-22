@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/screens/expense_list_page.dart';
 import 'package:fluttersam/screens/todo_list_page.dart';
 import 'package:fluttersam/widgets/card.dart';
 
@@ -35,7 +36,8 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                // Handle the onTap action for Comments block
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ExpenseScreen()));
               },
               child: const CardBlock(title: 'Expenses'),
             ),
