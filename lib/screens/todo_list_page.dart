@@ -11,7 +11,7 @@ class TodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todoProvider = Provider.of<TodoProvider>(context);
+    final todoProvider = Provider.of<MainProvider>(context);
     if (todoProvider.tasks.isEmpty) {
       todoProvider.fetchTasks(); //TODO: EXCEPTION CAUGHT
     }

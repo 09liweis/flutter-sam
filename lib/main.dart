@@ -14,7 +14,7 @@ class SamApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => TodoProvider(),
+      create: (context) => MainProvider(),
       child: MaterialApp(
         title: 'Todo App',
         theme: ThemeData(

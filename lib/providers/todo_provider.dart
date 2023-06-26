@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../services/todo_service.dart';
 import '../models/todo.dart';
+import '../models/movie.dart';
+import '../services/movie_service.dart';
 
-class TodoProvider extends ChangeNotifier {
+class MainProvider extends ChangeNotifier {
   List<Todo> tasks = [];
   bool loading = false;
 
@@ -27,6 +29,20 @@ class TodoProvider extends ChangeNotifier {
 
   void removeTaskAtIndex(int index) {
     tasks.removeAt(index);
+    notifyListeners();
+  }
+
+  List<Movie> movies = [];
+
+  Future<void> fetchMovies() async {
+    loading = true;
+    notifyListeners();
+    try {
+      movies = await MovieService.fetchMovies();
+    } catch (error) {
+      throw Exception('Failed to fetch movies: $error');
+    }
+    loading = false;
     notifyListeners();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersam/screens/expense_list_page.dart';
+import 'package:fluttersam/screens/movie_list_screen.dart';
 import 'package:fluttersam/screens/todo_list_page.dart';
 import 'package:fluttersam/widgets/card.dart';
 
@@ -28,7 +29,8 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                // Handle the onTap action for Blogs block
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MovieScreen()));
               },
               child: const CardBlock(title: 'Movies'),
             ),
