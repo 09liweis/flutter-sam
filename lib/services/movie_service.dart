@@ -5,7 +5,7 @@ import '../models/movie.dart';
 
 class MovieService extends ApiService {
   static Future<List<Movie>> fetchMovies() async {
-    final response = await ApiService.get('movies');
+    final response = await ApiService.get('movies?limit=100');
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       return List<Movie>.from(

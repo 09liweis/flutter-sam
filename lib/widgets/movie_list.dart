@@ -15,11 +15,10 @@ class MovieList extends StatelessWidget {
       itemCount: movies.length,
       itemBuilder: (context, index) {
         final movie = movies[index];
-        print(movie.poster);
         return ListTile(
           onTap: () => {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AddTodoScreen()))
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => AddTodoScreen()))
           },
           leading: CachedNetworkImage(
             imageUrl: movie.poster,
