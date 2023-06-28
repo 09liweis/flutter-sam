@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/services/expense_service.dart';
 
 import '../services/todo_service.dart';
 import '../models/todo.dart';
@@ -44,5 +45,9 @@ class MainProvider extends ChangeNotifier {
     }
     loading = false;
     notifyListeners();
+  }
+
+  Future<void> fetchStatistic() async {
+    await ExpenseService.fetchStatistic();
   }
 }
