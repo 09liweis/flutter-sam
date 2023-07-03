@@ -20,4 +20,14 @@ class SharedPreferencesHelper {
   static Future<void> setUserToken(String value) async {
     setString('userToken', value);
   }
+
+  static Future<void> setAPIRoutes(Map apiRoutes) async {
+    setString('apiRoutes', apiRoutes.toString());
+  }
+
+  static Future<Map> getAPIRoutes() async {
+    String? apiRoutes = await getString('apiRoutes');
+    print(apiRoutes);
+    return {};
+  }
 }
