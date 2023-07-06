@@ -7,6 +7,9 @@ class ExpenseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainProvider = Provider.of<MainProvider>(context);
+    mainProvider.fetchStatistic();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Expense Tracker'),

@@ -49,23 +49,6 @@ class CategoryPrice {
       };
 }
 
-class Grocery {
-  Grocery({required this.total, required this.items});
-
-  factory Grocery.fromMap(Map<String, dynamic> map) => Grocery(
-        total: map['total'],
-        items: List<Items1>.from(map['items'].map((e) => Items1.fromMap(e))),
-      );
-
-  double total;
-  List<Items1> items;
-
-  Map<String, dynamic> toMap() => {
-        'total': total,
-        'items': items.map((e) => e.toMap()).toList(),
-      };
-}
-
 class Items {
   Items({
     required this.Id,

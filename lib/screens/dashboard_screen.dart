@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/screens/chat_screen.dart';
 import 'package:fluttersam/screens/expense_list_page.dart';
 import 'package:fluttersam/screens/movie_list_screen.dart';
 import 'package:fluttersam/screens/todo_list_page.dart';
+import 'package:fluttersam/screens/chat_screen.dart';
 import 'package:fluttersam/widgets/card.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -47,9 +49,13 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatMessageScreen()));
                 // Handle the onTap action for Comments block
               },
-              child: const CardBlock(title: 'Blogs'),
+              child: const CardBlock(title: 'Chat'),
             ),
           ),
           Card(
