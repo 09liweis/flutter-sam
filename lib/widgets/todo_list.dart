@@ -8,7 +8,7 @@ class TodoList extends StatelessWidget {
   final List<Todo> tasks;
   final Function(int) onPressed;
 
-  TodoList({required this.tasks, required this.onPressed});
+  const TodoList({super.key, required this.tasks, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

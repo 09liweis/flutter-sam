@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluttersam/models/movie.dart';
-import '../screens/add_todo_page.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
   final Function(int) onPressed;
 
-  MovieList({required this.movies, required this.onPressed});
+  const MovieList({super.key, required this.movies, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
