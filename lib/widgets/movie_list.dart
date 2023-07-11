@@ -14,36 +14,57 @@ class MovieList extends StatelessWidget {
       itemCount: movies.length,
       itemBuilder: (context, index) {
         final movie = movies[index];
-        return ListTile(
-          onTap: () => {
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => AddTodoScreen()))
-          },
-          leading: CachedNetworkImage(
-            imageUrl: movie.poster,
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-          title: Text(
-            movie.title,
-            style: TextStyle(
-                decoration: (movie.isDone())
-                    ? TextDecoration.lineThrough
-                    : TextDecoration.none),
-          ),
-          subtitle: Text(
-            movie.doubanRating.toString(),
-            style: const TextStyle(color: Colors.cyan, fontSize: 15),
-          ),
-          trailing: IconButton(
-            icon: const Icon(
-              Icons.refresh,
-              color: Colors.green,
-              size: 30,
-            ),
-            onPressed: () {
-              onPressed(index);
-            },
+        return Card(
+          elevation: 5,
+          child: Row(
+            children: [
+              CachedNetworkImage(
+                width: 100,
+                imageUrl: movie.poster,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+              // Hero(
+              //     tag: movie.id,
+              //     child: Container(
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.only(
+              //               bottomLeft: Radius.circular(15),
+              //               topLeft: Radius.circular(15)),
+              //         ),
+              //         child: CachedNetworkImage(
+              //           width: 100,
+              //           imageUrl: movie.poster,
+              //           placeholder: (context, url) =>
+              //               const CircularProgressIndicator(),
+              //           errorWidget: (context, url, error) =>
+              //               const Icon(Icons.error),
+              //         ))),
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          width: 200,
+                          child: Text(movie.title,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ))),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        width: 240,
+                        child: Text(
+                          movie.doubanRating.toString(),
+                        ),
+                      ),
+                    ]),
+              )
+            ],
           ),
         );
       },
