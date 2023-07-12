@@ -57,9 +57,15 @@ class MovieList extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        width: 240,
-                        child: Text(
-                          movie.doubanRating.toString(),
+                        color: Colors.green,
+                        padding: EdgeInsets.all(10),
+                        width: 200,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                            movie.doubanRating.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                     ]),
