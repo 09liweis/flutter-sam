@@ -44,30 +44,37 @@ class MovieList extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(left: 10),
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                          width: 200,
-                          child: Text(movie.title,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ))),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        color: Colors.green,
-                        padding: EdgeInsets.all(10),
-                        width: 200,
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Text(
-                            movie.doubanRating.toString(),
-                            style: TextStyle(color: Colors.white),
+                      Stack(
+                        children: [
+                          Container(
+                              width: 230,
+                              child: Text(movie.title,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ))),
+                          SizedBox(
+                            height: 10,
                           ),
-                        ),
-                      ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              color: Colors.green,
+                              padding: EdgeInsets.all(10),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: Text(
+                                  movie.doubanRating.toString(),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ]),
               )
             ],
