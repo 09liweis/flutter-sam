@@ -18,7 +18,17 @@ class TodoScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Todo List'),
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 30,
+            )
+          ],
+        ),
       ),
       body: Column(
         children: [
