@@ -13,4 +13,14 @@ class TodoService extends ApiService {
       throw Exception('Failed to fetch tasks');
     }
   }
+
+  static Future<Todo> addTodo() async {
+    final response = await ApiService.post('todos');
+    if (response.statusCode == 200) {
+      final jsonData = jsonDecode(response.body);
+      return Todo.fromJson(jsonData);
+    } else {
+      throw Exception('Add task fail');
+    }
+  }
 }
