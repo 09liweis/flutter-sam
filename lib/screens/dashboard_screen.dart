@@ -3,7 +3,6 @@ import 'package:fluttersam/screens/chat_screen.dart';
 import 'package:fluttersam/screens/expense_list_page.dart';
 import 'package:fluttersam/screens/movie_list_screen.dart';
 import 'package:fluttersam/screens/todo_list_page.dart';
-import 'package:fluttersam/screens/chat_screen.dart';
 import 'package:fluttersam/widgets/card.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -25,7 +24,10 @@ class DashboardScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => TodoScreen()));
               },
-              child: const CardBlock(title: 'Todos'),
+              child: const CardBlock(
+                title: 'Todos',
+                bgColor: Color(0xfff96257),
+              ),
             ),
           ),
           Card(
@@ -34,7 +36,8 @@ class DashboardScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => MovieScreen()));
               },
-              child: const CardBlock(title: 'Movies'),
+              child:
+                  const CardBlock(title: 'Movies', bgColor: Color(0xff000000)),
             ),
           ),
           Card(
@@ -43,7 +46,8 @@ class DashboardScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ExpenseScreen()));
               },
-              child: const CardBlock(title: 'Expenses'),
+              child: const CardBlock(
+                  title: 'Expenses', bgColor: Color(0xffac00ef)),
             ),
           ),
           Card(
@@ -55,7 +59,7 @@ class DashboardScreen extends StatelessWidget {
                         builder: (context) => ChatMessageScreen()));
                 // Handle the onTap action for Comments block
               },
-              child: const CardBlock(title: 'Chat'),
+              child: const CardBlock(title: 'Chat', bgColor: Colors.blue),
             ),
           ),
           Card(
@@ -63,7 +67,7 @@ class DashboardScreen extends StatelessWidget {
               onTap: () {
                 // Handle the onTap action for Comments block
               },
-              child: const CardBlock(title: 'Places'),
+              child: const CardBlock(title: 'Places', bgColor: Colors.blue),
             ),
           ),
           Card(
@@ -71,7 +75,7 @@ class DashboardScreen extends StatelessWidget {
               onTap: () {
                 // Handle the onTap action for Comments block
               },
-              child: const CardBlock(title: 'Comments'),
+              child: const CardBlock(title: 'Comments', bgColor: Colors.blue),
             ),
           ),
           Card(
@@ -79,7 +83,7 @@ class DashboardScreen extends StatelessWidget {
               onTap: () {
                 // Handle the onTap action for Comments block
               },
-              child: const CardBlock(title: 'Test'),
+              child: const CardBlock(title: 'Test', bgColor: Colors.blue),
             ),
           ),
         ],

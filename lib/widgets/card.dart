@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 class CardBlock extends StatelessWidget {
   final String title;
+  final Color bgColor;
 
-  const CardBlock({
-    required this.title,
-  });
+  const CardBlock({required this.title, required this.bgColor});
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xff0c62a9),
+      color: bgColor,
       child: Center(
         child: Text(
           title,
