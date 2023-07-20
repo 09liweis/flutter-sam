@@ -37,7 +37,7 @@ class DashboardScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => MovieScreen()));
               },
               child:
-                  const CardBlock(title: 'Movies', bgColor: Color(0xff000000)),
+                  const CardBlock(title: 'Movies', bgColor: Color(0xd9ae4848)),
             ),
           ),
           Card(
@@ -59,7 +59,7 @@ class DashboardScreen extends StatelessWidget {
                         builder: (context) => ChatMessageScreen()));
                 // Handle the onTap action for Comments block
               },
-              child: const CardBlock(title: 'Chat', bgColor: Colors.blue),
+              child: const CardBlock(title: 'Chat', bgColor: Color(0xff0085ff)),
             ),
           ),
           Card(
