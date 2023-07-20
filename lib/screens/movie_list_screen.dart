@@ -28,16 +28,7 @@ class MovieScreen extends StatelessWidget {
                   : MovieList(
                       movies: movieProvider.movies,
                       onPressed: movieProvider.removeTaskAtIndex,
-                    )),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                movieProvider.fetchMovies();
-              },
-              child: const Text('Fetch Movies'),
-            ),
-          ),
+                    ))
         ],
       ),
       floatingActionButton: FloatingActionButton(

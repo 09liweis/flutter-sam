@@ -14,61 +14,75 @@ class MovieList extends StatelessWidget {
       itemCount: movies.length,
       itemBuilder: (context, index) {
         final movie = movies[index];
-        return Card(
-            elevation: 5,
-            child: Hero(
-              tag: movie.id,
-              child: Row(
-                children: [
-                  Expanded(
-                      flex: 3,
-                      child: CachedNetworkImage(
-                        imageUrl: movie.poster,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      )),
-                  Expanded(
-                      flex: 5,
-                      child: Container(
-                          height: 150,
-                          decoration: BoxDecoration(),
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Expanded(
-                            child: Stack(
-                                // crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(movie.title,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                    ],
-                                  ),
-                                  Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: Container(
-                                      color: Colors.green,
-                                      padding: EdgeInsets.all(10),
-                                      child: Align(
-                                        alignment: Alignment.topRight,
-                                        child: Text(
-                                          movie.doubanRating.toString(),
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                          )))
-                ],
-              ),
-            ));
+        return MovieCard(movie: movie);
       },
     );
+  }
+}
+
+class MovieCard extends StatelessWidget {
+  const MovieCard({
+    super.key,
+    required this.movie,
+  });
+
+  final Movie movie;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        elevation: 5,
+        child: Hero(
+          tag: movie.id,
+          child: Row(
+            children: [
+              Expanded(
+                  flex: 3,
+                  child: CachedNetworkImage(
+                    imageUrl: movie.poster,
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  )),
+              Expanded(
+                  flex: 5,
+                  child: Container(
+                    height: 160,
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Stack(children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(movie.title,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ],
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          padding: EdgeInsets.all(10),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Text(
+                              movie.doubanRating.toString(),
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ))
+            ],
+          ),
+        ));
   }
 }
