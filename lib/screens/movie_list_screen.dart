@@ -4,13 +4,13 @@ import '../widgets/movie_list.dart';
 import '../providers/todo_provider.dart';
 
 class MovieScreen extends StatelessWidget {
-  MovieScreen({super.key});
+  const MovieScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final movieProvider = Provider.of<MainProvider>(context);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (movieProvider.movies.isEmpty) {
         movieProvider.fetchMovies();
       }
