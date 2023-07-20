@@ -5,16 +5,17 @@ import '../widgets/todo_list.dart';
 import '../providers/todo_provider.dart';
 
 class TodoScreen extends StatelessWidget {
-  final TextEditingController _textEditingController = TextEditingController();
-
   TodoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<MainProvider>(context);
-    if (todoProvider.tasks.isEmpty) {
-      todoProvider.fetchTasks(); //TODO: EXCEPTION CAUGHT
-    }
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (todoProvider.tasks.isEmpty) {
+        todoProvider.fetchTasks();
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -51,6 +52,8 @@ class TodoScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        clipBehavior: Clip.hardEdge,
+        elevation: 1.4,
         onPressed: () => {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
