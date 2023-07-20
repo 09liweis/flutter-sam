@@ -16,12 +16,22 @@ class MovieScreen extends StatelessWidget {
       }
     });
 
+    List<String> categories = ['My Movies', 'In theater', 'Comming Soon'];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('What I Watched'),
       ),
       body: Column(
         children: [
+          Container(
+            height: 60,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (context, index) =>
+                    buildCategory(categories, index, context)),
+          ),
           Expanded(
               child: movieProvider.loading
                   ? const Center(child: CircularProgressIndicator())
@@ -39,5 +49,32 @@ class MovieScreen extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Padding buildCategory(
+      List<String> categories, int index, BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: GestureDetector(
+            onTap: () {
+              print(index);
+            },
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                categories[index],
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.w600),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                width: 40,
+                height: 6,
+                decoration: BoxDecoration(
+                    color: Colors.red, borderRadius: BorderRadius.circular(10)),
+              )
+            ])));
   }
 }
