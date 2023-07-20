@@ -9,9 +9,12 @@ class MovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final movieProvider = Provider.of<MainProvider>(context);
-    // if (movieProvider.movies.isEmpty) {
-    //   movieProvider.fetchMovies(); //TODO: EXCEPTION CAUGHT
-    // }
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (movieProvider.movies.isEmpty) {
+        movieProvider.fetchMovies();
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(
