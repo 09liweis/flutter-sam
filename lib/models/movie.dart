@@ -19,9 +19,13 @@ class Movie {
     return currentEpisode == episodes;
   }
 
+  String getId() {
+    return id;
+  }
+
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-        id: json['_id'],
+        id: json['douban_id'],
         title: json['title'],
         poster: json['poster'],
         doubanRating: json['douban_rating'],
