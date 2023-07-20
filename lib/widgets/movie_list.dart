@@ -32,21 +32,21 @@ class MovieList extends StatelessWidget {
                   Expanded(
                       flex: 5,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Column(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
+                          height: 150,
+                          decoration: BoxDecoration(),
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Expanded(
+                            child: Stack(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                      width: 230,
-                                      child: Text(movie.title,
+                                  Column(
+                                    children: [
+                                      Text(movie.title,
                                           style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                          ))),
-                                  SizedBox(
-                                    height: 10,
+                                          )),
+                                    ],
                                   ),
                                   Positioned(
                                     top: 0,
@@ -63,10 +63,8 @@ class MovieList extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ],
-                              )
-                            ]),
-                      ))
+                                ]),
+                          )))
                 ],
               ),
             ));
