@@ -33,7 +33,7 @@ class MovieCard extends StatelessWidget {
     return Card(
         elevation: 5,
         child: Hero(
-          tag: movie.id,
+          tag: movie.getId(),
           child: Row(
             children: [
               MovieCardPoster(movie: movie),
@@ -63,7 +63,7 @@ class MovieCardInfo extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(movie.title,
+                Text(movie.getTitle(),
                     style: const TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -121,7 +121,7 @@ class MovieCardPoster extends StatelessWidget {
     return Expanded(
         flex: 3,
         child: CachedNetworkImage(
-          imageUrl: movie.poster,
+          imageUrl: movie.getPoster(),
           placeholder: (context, url) => const CircularProgressIndicator(),
           errorWidget: (context, url, error) => const Icon(Icons.error),
         ));

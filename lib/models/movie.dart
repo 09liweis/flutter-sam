@@ -23,6 +23,18 @@ class Movie {
     return id;
   }
 
+  String getTitle() {
+    return title;
+  }
+
+  String getPoster() {
+    return poster;
+  }
+
+  String getType() {
+    return episodes == 1 ? 'movie' : 'tv';
+  }
+
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
         id: json['douban_id'],
