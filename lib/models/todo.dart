@@ -15,6 +15,14 @@ class Todo {
     return status == 'done';
   }
 
+  String getName() {
+    return name;
+  }
+
+  String getDate() {
+    return date;
+  }
+
   factory Todo.fromJson(Map<String, dynamic> json) {
     return Todo(
       id: json['_id'],

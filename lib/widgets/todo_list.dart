@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:fluttersam/models/todo.dart';
 import '../screens/add_todo_page.dart';
@@ -23,14 +21,14 @@ class TodoList extends StatelessWidget {
           },
           leading: const Icon(Icons.list),
           title: Text(
-            task.name,
+            task.getName(),
             style: TextStyle(
                 decoration: (task.isDone())
                     ? TextDecoration.lineThrough
                     : TextDecoration.none),
           ),
           subtitle: Text(
-            task.date,
+            task.getDate(),
             style: const TextStyle(color: Colors.cyan, fontSize: 15),
           ),
           trailing: IconButton(
