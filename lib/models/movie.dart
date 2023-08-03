@@ -31,6 +31,10 @@ class Movie {
     return poster;
   }
 
+  String getDoubanRating() {
+    return doubanRating.toString();
+  }
+
   String getType() {
     return episodes == 1 ? 'movie' : 'tv';
   }

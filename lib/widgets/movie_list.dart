@@ -92,15 +92,17 @@ class MovieCardInfoRating extends StatelessWidget {
       top: 0,
       right: 0,
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.green,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        padding: EdgeInsets.all(10),
+            borderRadius: BorderRadius.all(Radius.circular(5))),
+        width: 30,
+        padding: const EdgeInsets.all(5),
         child: Align(
           alignment: Alignment.topRight,
           child: Text(
-            movie.doubanRating.toString(),
-            style: TextStyle(color: Colors.white),
+            movie.getDoubanRating(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       ),
