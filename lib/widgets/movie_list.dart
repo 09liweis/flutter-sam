@@ -119,10 +119,16 @@ class MovieCardPoster extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         flex: 3,
-        child: CachedNetworkImage(
-          imageUrl: movie.getPoster(),
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+        child: Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10))),
+          child: CachedNetworkImage(
+            imageUrl: movie.getPoster(),
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
         ));
   }
 }
