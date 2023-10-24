@@ -10,7 +10,7 @@ class MovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final movieProvider = Provider.of<MainProvider>(context);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       if (movieProvider.movies.isEmpty) {
         movieProvider.fetchMovies();
       }
