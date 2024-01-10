@@ -69,7 +69,7 @@ class MovieScreen extends StatelessWidget {
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 width: 40,
                 height: 6,
                 decoration: BoxDecoration(
