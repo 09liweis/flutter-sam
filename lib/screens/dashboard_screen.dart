@@ -45,18 +45,7 @@ class DashboardCardList extends StatelessWidget {
       itemCount: cards.length,
       itemBuilder: (context, index) {
         final card = cards[index];
-        return Card(
-          child: InkWell(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => card.screen));
-            },
-            child: CardBlock(
-              title: card.title,
-              bgColor: card.bgColor,
-            ),
-          ),
-        );
+        return CardBlock(card: card);
       },
     );
   }
