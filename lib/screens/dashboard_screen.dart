@@ -11,6 +11,10 @@ class DashboardScreen extends StatelessWidget {
     final deviceWidth = MediaQuery.of(context).size.width;
     final columnsCount = deviceWidth > 600 ? 3 : 2;
 
+    void handleTapCard(screen) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+    }
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Dashboard'),
@@ -21,8 +25,7 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TodoScreen()));
+                handleTapCard(TodoScreen());
               },
               child: const CardBlock(
                 title: 'Todos',
@@ -33,8 +36,7 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MovieScreen()));
+                handleTapCard(MovieScreen());
               },
               child:
                   const CardBlock(title: 'Movies', bgColor: Color(0xd9ae4848)),
@@ -43,8 +45,7 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ExpenseScreen()));
+                handleTapCard(ExpenseScreen());
               },
               child: const CardBlock(
                   title: 'Expenses', bgColor: Color(0xffac00ef)),
@@ -53,10 +54,7 @@ class DashboardScreen extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChatMessageScreen()));
+                handleTapCard(ChatMessageScreen());
                 // Handle the onTap action for Comments block
               },
               child: const CardBlock(title: 'Chat', bgColor: Color(0xff0085ff)),
