@@ -5,89 +5,59 @@ import 'package:fluttersam/screens/movie_list_screen.dart';
 import 'package:fluttersam/screens/todo_list_page.dart';
 import 'package:fluttersam/widgets/card.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardCard {
+  final String title;
+  Color bgColor;
+  final StatelessWidget screen;
+
+  DashboardCard({
+    required this.title,
+    this.bgColor = Colors.blue,
+    required this.screen,
+  });
+}
+
+List<DashboardCard> cards = [
+  DashboardCard(
+      screen: TodoScreen(), title: 'Todos', bgColor: const Color(0xfff96257)),
+  DashboardCard(screen: MovieScreen(), title: 'Movies'),
+  DashboardCard(screen: ExpenseScreen(), title: 'Expenses'),
+  DashboardCard(screen: ChatMessageScreen(), title: 'Chat'),
+  DashboardCard(screen: TodoScreen(), title: 'Places'),
+  DashboardCard(screen: TodoScreen(), title: 'Comments'),
+  DashboardCard(screen: TodoScreen(), title: 'Test'),
+];
+
+class DashboardCardList extends StatelessWidget {
+  final List<DashboardCard> cards;
+
+  const DashboardCardList({super.key, required this.cards});
+
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final columnsCount = deviceWidth > 600 ? 3 : 2;
 
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Dashboard'),
-      // ),
-      body: GridView.count(
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: columnsCount,
-        children: [
-          Card(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TodoScreen()));
-              },
-              child: const CardBlock(
-                title: 'Todos',
-                bgColor: Color(0xfff96257),
-              ),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MovieScreen()));
-              },
-              child:
-                  const CardBlock(title: 'Movies', bgColor: Color(0xd9ae4848)),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ExpenseScreen()));
-              },
-              child: const CardBlock(
-                  title: 'Expenses', bgColor: Color(0xffac00ef)),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChatMessageScreen()));
-                // Handle the onTap action for Comments block
-              },
-              child: const CardBlock(title: 'Chat', bgColor: Color(0xff0085ff)),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                // Handle the onTap action for Comments block
-              },
-              child: const CardBlock(title: 'Places', bgColor: Colors.blue),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                // Handle the onTap action for Comments block
-              },
-              child: const CardBlock(title: 'Comments', bgColor: Colors.blue),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                // Handle the onTap action for Comments block
-              },
-              child: const CardBlock(title: 'Test', bgColor: Colors.blue),
-            ),
-          ),
-        ],
       ),
+      itemCount: cards.length,
+      itemBuilder: (context, index) {
+        final card = cards[index];
+        return CardBlock(card: card);
+      },
     );
+  }
+}
+
+class DashboardScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        // appBar: AppBar(
+        //   title: Text('Dashboard'),
+        // ),
+        body: DashboardCardList(cards: cards));
   }
 }

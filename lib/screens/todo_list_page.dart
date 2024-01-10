@@ -20,7 +20,7 @@ class TodoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Icon(
