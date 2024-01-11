@@ -7,6 +7,8 @@ class CardBlock extends StatelessWidget {
   const CardBlock({required this.card});
   @override
   Widget build(BuildContext context) {
+    const cardTextStyle = TextStyle(
+        color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold);
     return Card(
       color: card.bgColor,
       child: InkWell(
@@ -18,11 +20,7 @@ class CardBlock extends StatelessWidget {
             child: Center(
               child: Text(
                 card.title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: cardTextStyle,
               ),
             ),
           )),
