@@ -98,7 +98,7 @@ class MovieCardInfoRating extends StatelessWidget {
         width: 30,
         padding: const EdgeInsets.all(5),
         child: Text(
-          movie.getDoubanRating(),
+          movie.getIMDBRating(),
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.white),
         ),

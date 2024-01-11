@@ -12,11 +12,18 @@ class MovieScreen extends StatelessWidget {
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       if (movieProvider.movies.isEmpty) {
-        movieProvider.fetchMovies();
+        movieProvider.fetchMovies("");
       }
     });
 
-    List<String> categories = ['My Movies', 'In theater', 'Comming Soon'];
+    List<String> categories = [
+      'My Movies',
+      'imdb_boxoffice',
+      'popular',
+      'in_theatre',
+      'comming',
+      'chart'
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -53,11 +60,12 @@ class MovieScreen extends StatelessWidget {
 
   Padding buildCategory(
       List<String> categories, int index, BuildContext context) {
+    final movieProvider = Provider.of<MainProvider>(context);
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GestureDetector(
             onTap: () {
-              print(index);
+              movieProvider.fetchMovies(categories[index]);
             },
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
