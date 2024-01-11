@@ -44,8 +44,7 @@ class DashboardCardList extends StatelessWidget {
       ),
       itemCount: cards.length,
       itemBuilder: (context, index) {
-        final card = cards[index];
-        return CardBlock(card: card);
+        return CardBlock(card: cards[index]);
       },
     );
   }
