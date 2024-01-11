@@ -35,11 +35,11 @@ class MainProvider extends ChangeNotifier {
 
   List<Movie> movies = [];
 
-  Future<void> fetchMovies() async {
+  Future<void> fetchMovies(endPoint) async {
     loading = true;
     notifyListeners();
     try {
-      movies = await MovieService.fetchMovies();
+      movies = await MovieService.fetchMovies(endPoint);
     } catch (error) {
       throw Exception('Failed to fetch movies: $error');
     }
