@@ -30,6 +30,11 @@ class TodoScreen extends StatelessWidget {
 
     const loadingWidget = Center(child: CircularProgressIndicator());
 
+    const addTodoIcon = Icon(
+      Icons.add,
+      size: 32,
+    );
+
     return Scaffold(
       appBar: AppBar(elevation: 0, title: titleBar),
       body: Column(
@@ -59,10 +64,7 @@ class TodoScreen extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
         },
-        child: const Icon(
-          Icons.add,
-          size: 32,
-        ),
+        child: addTodoIcon,
       ),
     );
   }
