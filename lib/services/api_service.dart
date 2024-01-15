@@ -11,14 +11,17 @@ class ApiService {
     SharedPreferencesHelper.setAPIRoutes(jsonDecode(response.body));
   }
 
+  static Uri getParseUri(String endPoint) {
+    return Uri.parse('$baseUrl/$endPoint');
+  }
+
   static Future<http.Response> get(String endpoint) async {
     Map apiRoutes = await SharedPreferencesHelper.getAPIRoutes();
-    return await http.get(Uri.parse('$baseUrl/$endpoint'));
+    return await http.get(getParseUri(endpoint));
   }
 
   static Future<http.Response> post(
       String endpoint, Map<String, String> body) async {
-    print('$baseUrl/$endpoint');
-    return await http.post(Uri.parse('$baseUrl/$endpoint'), body: body);
+    return await http.post(getParseUri(endpoint), body: body);
   }
 }
