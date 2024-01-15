@@ -16,7 +16,9 @@ class ApiService {
     return await http.get(Uri.parse('$baseUrl/$endpoint'));
   }
 
-  static Future<http.Response> post(String endpoint) async {
-    return await http.post(Uri.parse('$baseUrl/$endpoint'), body: {});
+  static Future<http.Response> post(
+      String endpoint, Map<String, String> body) async {
+    print('$baseUrl/$endpoint');
+    return await http.post(Uri.parse('$baseUrl/$endpoint'), body: body);
   }
 }

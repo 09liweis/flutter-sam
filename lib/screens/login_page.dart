@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersam/screens/profile_screen.dart';
+import 'package:fluttersam/services/api_service.dart';
 import 'package:fluttersam/utils/share_preferences.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     // Your API endpoint for login
-    String url = 'https://samliweisen.onrender.com/api/user/login';
+    String url = 'user/login';
 
     // Create the request body
     Map<String, String> requestBody = {
@@ -42,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     try {
-      final response = await http.post(Uri.parse(url), body: requestBody);
+      final response = await ApiService.post(url, requestBody);
 
       if (response.statusCode == 200) {
         // Login successful
