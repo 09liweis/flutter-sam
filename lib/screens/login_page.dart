@@ -44,11 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       final response = await ApiService.post(url, requestBody);
+      var responseBody = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
         // Login successful
-        var responseData = jsonDecode(response.body);
-        SharedPreferencesHelper.setUserToken(responseData['token']);
+        SharedPreferencesHelper.setUserToken(responseBody['token']);
 
         // Navigate to the profile screen
         Navigator.pushReplacement(
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       } else {
         // Login failed
-        var error = jsonDecode(response.body)['msg'];
+        var error = responseBody['msg'];
         // Show an error message to the user
         showComfirmDialog(error);
       }
