@@ -33,9 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Your API endpoint for login
-    String url = 'user/login';
-
     // Create the request body
     Map<String, String> requestBody = {
       'eml': username,
@@ -43,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     try {
-      final response = await ApiService.post(url, requestBody);
+      final response = await ApiService.post('user/login', requestBody);
       var responseBody = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
