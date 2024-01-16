@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/movie_list.dart';
-import '../../providers/todo_provider.dart';
+import '../../providers/app_provider.dart';
 
 class MovieScreen extends StatelessWidget {
   const MovieScreen({super.key});
@@ -10,7 +10,7 @@ class MovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final movieProvider = Provider.of<MainProvider>(context);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (movieProvider.movies.isEmpty) {
         movieProvider.fetchMovies("");
       }

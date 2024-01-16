@@ -3,7 +3,7 @@ import 'package:fluttersam/services/api_service.dart';
 import 'package:provider/provider.dart';
 
 import './screens/tabbar_page.dart';
-import './providers/todo_provider.dart';
+import './providers/app_provider.dart';
 
 void main() {
   ApiService.getAPIRoutes();

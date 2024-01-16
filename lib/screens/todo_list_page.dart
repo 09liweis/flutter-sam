@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './add_todo_page.dart';
 import '../widgets/todo_list.dart';
-import '../providers/todo_provider.dart';
+import '../providers/app_provider.dart';
 
 class TodoScreen extends StatelessWidget {
   TodoScreen({super.key});

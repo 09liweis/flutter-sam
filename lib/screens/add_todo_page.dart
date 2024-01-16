@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/todo.dart';
-import '../providers/todo_provider.dart';
+import '../providers/app_provider.dart';
 
 class AddTodoScreen extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
