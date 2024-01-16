@@ -15,14 +15,14 @@ class DashboardCard {
       {required this.title,
       this.bgColor = Colors.blue,
       required this.screen,
-      this.icon = Icons.today});
+      this.icon = Icons.list});
 }
 
 List<DashboardCard> cards = [
   DashboardCard(
       screen: TodoScreen(), title: 'Todos', bgColor: const Color(0xfff96257)),
-  DashboardCard(screen: MovieScreen(), title: 'Movies'),
-  DashboardCard(screen: ExpenseScreen(), title: 'Expenses'),
+  DashboardCard(screen: MovieScreen(), title: 'Movies', icon: Icons.movie),
+  DashboardCard(screen: ExpenseScreen(), title: 'Expenses', icon: Icons.paid),
   DashboardCard(screen: ChatMessageScreen(), title: 'Chat'),
   DashboardCard(screen: TodoScreen(), title: 'Places'),
   DashboardCard(screen: TodoScreen(), title: 'Comments'),
