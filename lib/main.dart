@@ -18,7 +18,6 @@ class SamApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MainProvider(),
       child: MaterialApp(
-        title: 'Todo App',
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),

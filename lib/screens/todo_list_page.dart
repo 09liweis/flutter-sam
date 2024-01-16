@@ -17,25 +17,31 @@ class TodoScreen extends StatelessWidget {
       }
     });
 
+    const titleBar = Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Icon(
+          Icons.menu,
+          color: Colors.white,
+          size: 30,
+        )
+      ],
+    );
+
+    const loadingWidget = Center(child: CircularProgressIndicator());
+
+    const addTodoIcon = Icon(
+      Icons.add,
+      size: 32,
+    );
+
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Icon(
-              Icons.menu,
-              color: Colors.white,
-              size: 30,
-            )
-          ],
-        ),
-      ),
+      appBar: AppBar(elevation: 0, title: titleBar),
       body: Column(
         children: [
           Expanded(
               child: todoProvider.loading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? loadingWidget
                   : TodoList(
                       tasks: todoProvider.tasks,
                       onPressed: todoProvider.removeTaskAtIndex,
@@ -58,7 +64,7 @@ class TodoScreen extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
         },
-        child: const Icon(Icons.add),
+        child: addTodoIcon,
       ),
     );
   }

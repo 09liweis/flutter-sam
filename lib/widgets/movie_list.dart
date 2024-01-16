@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluttersam/models/movie.dart';
+import 'package:fluttersam/screens/movies/movie_detail_screen.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
@@ -30,16 +31,24 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var movieHero = Hero(
+      tag: movie.getId(),
+      child: Row(
+        children: [MovieCardPoster(movie: movie), MovieCardInfo(movie: movie)],
+      ),
+    );
     return Card(
         elevation: 5,
-        child: Hero(
-          tag: movie.getId(),
-          child: Row(
-            children: [
-              MovieCardPoster(movie: movie),
-              MovieCardInfo(movie: movie)
-            ],
-          ),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MovieDetailScreen(
+                          movie: movie,
+                        )));
+          },
+          child: movieHero,
         ));
   }
 }
@@ -98,7 +107,7 @@ class MovieCardInfoRating extends StatelessWidget {
         width: 30,
         padding: const EdgeInsets.all(5),
         child: Text(
-          movie.getDoubanRating(),
+          movie.getIMDBRating(),
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.white),
         ),

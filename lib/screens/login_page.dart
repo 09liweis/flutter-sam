@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersam/screens/profile_screen.dart';
+import 'package:fluttersam/services/api_service.dart';
 import 'package:fluttersam/utils/share_preferences.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -32,9 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Your API endpoint for login
-    String url = 'https://samliweisen.onrender.com/api/user/login';
-
     // Create the request body
     Map<String, String> requestBody = {
       'eml': username,
@@ -42,12 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     try {
-      final response = await http.post(Uri.parse(url), body: requestBody);
+      final response = await ApiService.post('user/login', requestBody);
+      var responseBody = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
         // Login successful
-        var responseData = jsonDecode(response.body);
-        SharedPreferencesHelper.setUserToken(responseData['token']);
+        SharedPreferencesHelper.setUserToken(responseBody['token']);
 
         // Navigate to the profile screen
         Navigator.pushReplacement(
@@ -56,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       } else {
         // Login failed
-        var error = jsonDecode(response.body)['msg'];
+        var error = responseBody['msg'];
         // Show an error message to the user
         showComfirmDialog(error);
       }

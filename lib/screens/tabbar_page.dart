@@ -37,6 +37,27 @@ class _TabbarScreenState extends State<TabbarScreen>
 
   @override
   Widget build(BuildContext context) {
+    const tabs = [
+      Tab(
+        icon: Icon(
+          Icons.home,
+          color: Colors.amber,
+        ),
+      ),
+      Tab(
+        icon: Icon(
+          size: 30,
+          Icons.video_call,
+          color: Colors.red,
+        ),
+      ),
+      Tab(
+        icon: Icon(
+          Icons.person,
+          color: Colors.green,
+        ),
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sam\'s Flutter App'),
@@ -52,27 +73,7 @@ class _TabbarScreenState extends State<TabbarScreen>
       ),
       bottomNavigationBar: TabBar(
         controller: _tabController,
-        tabs: const [
-          Tab(
-            icon: Icon(
-              Icons.home,
-              color: Colors.amber,
-            ),
-          ),
-          Tab(
-            icon: Icon(
-              size: 30,
-              Icons.video_call,
-              color: Colors.red,
-            ),
-          ),
-          Tab(
-            icon: Icon(
-              Icons.person,
-              color: Colors.green,
-            ),
-          ),
-        ],
+        tabs: tabs,
       ),
     );
   }

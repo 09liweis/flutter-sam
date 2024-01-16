@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersam/screens/chat_screen.dart';
 import 'package:fluttersam/screens/expense_list_page.dart';
-import 'package:fluttersam/screens/movie_list_screen.dart';
+import 'package:fluttersam/screens/movies/movie_list_screen.dart';
 import 'package:fluttersam/screens/todo_list_page.dart';
 import 'package:fluttersam/widgets/card.dart';
 
@@ -9,19 +9,20 @@ class DashboardCard {
   final String title;
   Color bgColor;
   final StatelessWidget screen;
+  IconData icon;
 
-  DashboardCard({
-    required this.title,
-    this.bgColor = Colors.blue,
-    required this.screen,
-  });
+  DashboardCard(
+      {required this.title,
+      this.bgColor = Colors.blue,
+      required this.screen,
+      this.icon = Icons.list});
 }
 
 List<DashboardCard> cards = [
   DashboardCard(
       screen: TodoScreen(), title: 'Todos', bgColor: const Color(0xfff96257)),
-  DashboardCard(screen: MovieScreen(), title: 'Movies'),
-  DashboardCard(screen: ExpenseScreen(), title: 'Expenses'),
+  DashboardCard(screen: MovieScreen(), title: 'Movies', icon: Icons.movie),
+  DashboardCard(screen: ExpenseScreen(), title: 'Expenses', icon: Icons.paid),
   DashboardCard(screen: ChatMessageScreen(), title: 'Chat'),
   DashboardCard(screen: TodoScreen(), title: 'Places'),
   DashboardCard(screen: TodoScreen(), title: 'Comments'),
@@ -44,8 +45,7 @@ class DashboardCardList extends StatelessWidget {
       ),
       itemCount: cards.length,
       itemBuilder: (context, index) {
-        final card = cards[index];
-        return CardBlock(card: card);
+        return CardBlock(card: cards[index]);
       },
     );
   }
