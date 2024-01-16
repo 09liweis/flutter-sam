@@ -47,7 +47,7 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-        id: json['douban_id'] ?? json['imdb_id'] ?? '',
+        id: json['_id'] ?? json['douban_id'] ?? json['imdb_id'] ?? '',
         title: json['title'],
         poster: json['poster'],
         doubanRating: json['douban_rating'] ?? 0,
