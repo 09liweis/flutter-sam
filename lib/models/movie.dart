@@ -6,16 +6,17 @@ class Movie {
   double imdbRating;
   final int currentEpisode;
   final int episodes;
+  String summaryAPI;
 
-  Movie({
-    required this.id,
-    required this.title,
-    required this.poster,
-    required this.doubanRating,
-    required this.imdbRating,
-    required this.currentEpisode,
-    required this.episodes,
-  });
+  Movie(
+      {required this.id,
+      required this.title,
+      required this.poster,
+      required this.doubanRating,
+      required this.imdbRating,
+      required this.currentEpisode,
+      required this.episodes,
+      this.summaryAPI = ''});
 
   bool isDone() {
     return currentEpisode == episodes;
@@ -45,6 +46,10 @@ class Movie {
     return episodes == 1 ? 'movie' : 'tv';
   }
 
+  String getSummaryAPI() {
+    return summaryAPI;
+  }
+
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
         id: json['_id'] ?? json['douban_id'] ?? json['imdb_id'] ?? '',
@@ -52,6 +57,7 @@ class Movie {
         poster: json['poster'],
         doubanRating: json['douban_rating'] ?? 0,
         imdbRating: json['imdb_rating'] ?? 0,
+        summaryAPI: json.containsKey('apis') ? json['apis']['summary'] : '',
         currentEpisode: json['current_episode'] ?? 0,
         episodes: json['episodes'] ?? 0);
   }
