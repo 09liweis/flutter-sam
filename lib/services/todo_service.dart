@@ -14,8 +14,13 @@ class TodoService extends ApiService {
     }
   }
 
-  static Future<Todo> addTodo() async {
-    final response = await ApiService.post('todos', {});
+  static Future<Todo> addTodo(Todo todo) async {
+    Map<String, String> todoRequest = {
+      "name": todo.getName(),
+      "date": todo.getDate(),
+      "status": "pending"
+    };
+    final response = await ApiService.post('todos', todoRequest);
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
       return Todo.fromJson(jsonData);

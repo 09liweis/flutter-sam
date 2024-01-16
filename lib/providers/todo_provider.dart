@@ -22,9 +22,11 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addTask(Todo task) {
-    tasks.insert(0, task);
-    // tasks.add(task);
+  Future<void> addTask(Todo task) async {
+    try {
+      Todo addedTodo = await TodoService.addTodo(task);
+      tasks.add(addedTodo);
+    } catch (e) {}
     notifyListeners();
   }
 
