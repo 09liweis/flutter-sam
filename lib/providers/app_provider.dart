@@ -36,8 +36,10 @@ class MainProvider extends ChangeNotifier {
   }
 
   List<Movie> movies = [];
+  String curMovieCategory = '';
 
   Future<void> fetchMovies(endPoint) async {
+    curMovieCategory = endPoint;
     loading = true;
     notifyListeners();
     try {
