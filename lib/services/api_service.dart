@@ -24,4 +24,8 @@ class ApiService {
       String endpoint, Map<String, String> body) async {
     return await http.post(getParseUri(endpoint), body: body);
   }
+
+  static Future<http.Response> delete(String endpoint) async {
+    return await http.delete(getParseUri(endpoint));
+  }
 }
