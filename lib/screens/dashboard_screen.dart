@@ -9,12 +9,13 @@ class DashboardCard {
   final String title;
   Color bgColor;
   final StatelessWidget screen;
+  IconData icon;
 
-  DashboardCard({
-    required this.title,
-    this.bgColor = Colors.blue,
-    required this.screen,
-  });
+  DashboardCard(
+      {required this.title,
+      this.bgColor = Colors.blue,
+      required this.screen,
+      this.icon = Icons.today});
 }
 
 List<DashboardCard> cards = [

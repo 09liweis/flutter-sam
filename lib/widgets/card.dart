@@ -9,6 +9,8 @@ class CardBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     const cardTextStyle = TextStyle(
         color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold);
+    var cardText = Text(card.title, style: cardTextStyle);
+    var cardIcon = Icon(card.icon, color: Colors.white);
     return Card(
       color: card.bgColor,
       child: InkWell(
@@ -18,9 +20,9 @@ class CardBlock extends StatelessWidget {
           },
           child: Container(
             child: Center(
-              child: Text(
-                card.title,
-                style: cardTextStyle,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [cardIcon, cardText],
               ),
             ),
           )),
