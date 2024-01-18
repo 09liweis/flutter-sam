@@ -1,21 +1,21 @@
 class Movie {
-  final String id;
-  final String title;
-  final String poster;
+  String id;
+  String title;
+  String poster;
   double doubanRating;
   double imdbRating;
-  final int currentEpisode;
-  final int episodes;
+  int currentEpisode;
+  int episodes;
   String summaryAPI;
 
   Movie(
-      {required this.id,
-      required this.title,
-      required this.poster,
-      required this.doubanRating,
-      required this.imdbRating,
-      required this.currentEpisode,
-      required this.episodes,
+      {this.id = '',
+      this.title = '',
+      this.poster = '',
+      this.doubanRating = 0,
+      this.imdbRating = 0,
+      this.currentEpisode = 0,
+      this.episodes = 0,
       this.summaryAPI = ''});
 
   bool isDone() {
@@ -26,39 +26,68 @@ class Movie {
     return id;
   }
 
+  void setId(String movieId) {
+    id = movieId;
+  }
+
   String getTitle() {
     return title;
+  }
+
+  void setTitle(String movieTitle) {
+    title = movieTitle;
   }
 
   String getPoster() {
     return poster;
   }
 
+  void setPoster(String moviePoster) {
+    poster = moviePoster;
+  }
+
   String getDoubanRating() {
     return doubanRating.toString();
+  }
+
+  void setDoubanRating(double movieDoubanRating) {
+    doubanRating = movieDoubanRating;
   }
 
   String getIMDBRating() {
     return imdbRating.toString();
   }
 
+  void setIMDBRating(double movieIMDBRating) {
+    imdbRating = movieIMDBRating;
+  }
+
   String getType() {
     return episodes == 1 ? 'movie' : 'tv';
+  }
+
+  void setEpisodes(int movieEpisodes) {
+    episodes = movieEpisodes;
   }
 
   String getSummaryAPI() {
     return summaryAPI;
   }
 
+  void setSummaryAPI(String movieSummaryAPI) {
+    summaryAPI = movieSummaryAPI;
+  }
+
   factory Movie.fromJson(Map<String, dynamic> json) {
-    return Movie(
-        id: json['_id'] ?? json['douban_id'] ?? json['imdb_id'] ?? '',
-        title: json['title'],
-        poster: json['poster'],
-        doubanRating: json['douban_rating'] ?? 0,
-        imdbRating: json['imdb_rating'] ?? 0,
-        summaryAPI: json.containsKey('apis') ? json['apis']['summary'] : '',
-        currentEpisode: json['current_episode'] ?? 0,
-        episodes: json['episodes'] ?? 0);
+    Movie movie = Movie();
+    movie.setId(json['_id'] ?? json['douban_id'] ?? json['imdb_id']);
+    movie.setTitle(json['title']);
+    movie.setPoster(json['poster']);
+    movie.setDoubanRating(json['douban_rating'] ?? 0);
+    movie.setIMDBRating(json['imdb_rating'] ?? 0);
+    movie.setEpisodes(json['episodes'] ?? 0);
+    movie
+        .setSummaryAPI(json.containsKey('apis') ? json['apis']['summary'] : '');
+    return movie;
   }
 }
