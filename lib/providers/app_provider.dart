@@ -37,6 +37,7 @@ class MainProvider extends ChangeNotifier {
 
   List<Movie> movies = [];
   String curMovieCategory = '';
+  Movie movie = Movie();
 
   Future<void> fetchMovies(endPoint) async {
     curMovieCategory = endPoint;
@@ -51,7 +52,15 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchMovieSummary(Movie movie) async {}
+  Future<void> fetchMovieSummary(Movie movie) async {
+    loading = true;
+    notifyListeners();
+    try {
+      movie = await MovieService.fetchMovieDetail(movie.getSummaryAPI());
+    } catch (e) {}
+    loading = false;
+    notifyListeners();
+  }
 
   Future<void> fetchStatistic() async {
     await ExpenseService.fetchStatistic();
