@@ -8,9 +8,13 @@ class MovieService extends ApiService {
     endPoint ??= "";
     final response = await ApiService.get("movies/" + endPoint + "?limit=100");
     if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      return List<Movie>.from(
-          jsonData['movies'].map((task) => Movie.fromJson(task)));
+      try {
+        final jsonData = jsonDecode(response.body);
+        return List<Movie>.from(
+            jsonData['movies'].map((task) => Movie.fromJson(task)));
+      } catch (e) {
+        throw Exception('Failed to fetch tasks');
+      }
     } else {
       throw Exception('Failed to fetch tasks');
     }
