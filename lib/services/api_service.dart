@@ -11,8 +11,12 @@ class ApiService {
     SharedPreferencesHelper.setAPIRoutes(jsonDecode(response.body));
   }
 
-  static Uri getParseUri(String endPoint) {
-    return Uri.parse('$baseUrl/$endPoint');
+  static Uri getParseUri(String endpoint) {
+    String api = endpoint;
+    if (!endpoint.contains(baseUrl)) {
+      api = '$baseUrl/$endpoint';
+    }
+    return Uri.parse(api);
   }
 
   static Future<http.Response> get(String endpoint) async {
