@@ -19,4 +19,13 @@ class MovieService extends ApiService {
       throw Exception('Failed to fetch tasks');
     }
   }
+
+  static Future<Movie> fetchMovieDetail(summaryAPI) async {
+    try {
+      final response = await ApiService.get(summaryAPI);
+      return Movie.fromJson(jsonDecode(response.body));
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }
