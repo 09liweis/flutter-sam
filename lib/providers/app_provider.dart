@@ -51,6 +51,8 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> fetchMovieSummary(Movie movie) async {}
+
   Future<void> fetchStatistic() async {
     await ExpenseService.fetchStatistic();
   }
