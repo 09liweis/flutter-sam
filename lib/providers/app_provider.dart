@@ -52,9 +52,12 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchMovieSummary(Movie movie) async {
+  void setMovie(Movie curMovie) {
+    movie = curMovie;
+  }
+
+  Future<void> fetchMovieSummary() async {
     loading = true;
-    notifyListeners();
     try {
       movie = await MovieService.fetchMovieDetail(movie.getSummaryAPI());
     } catch (e) {}
