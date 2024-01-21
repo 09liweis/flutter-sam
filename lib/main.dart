@@ -7,7 +7,10 @@ import './providers/app_provider.dart';
 
 void main() {
   ApiService.getAPIRoutes();
-  runApp(const SamApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => MainProvider())],
+    child: SamApp(),
+  ));
 }
 
 class SamApp extends StatelessWidget {
@@ -15,14 +18,11 @@ class SamApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MainProvider(),
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-        ),
-        home: TabbarScreen(),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.green,
       ),
+      home: TabbarScreen(),
     );
   }
 }
