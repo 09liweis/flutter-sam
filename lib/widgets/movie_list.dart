@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluttersam/models/movie.dart';
+import 'package:fluttersam/providers/app_provider.dart';
 import 'package:fluttersam/screens/movies/movie_detail_screen.dart';
+import 'package:provider/provider.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
@@ -31,6 +33,7 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final movieProvider = Provider.of<MainProvider>(context);
     var movieHero = Hero(
       tag: movie.getId(),
       child: Row(
@@ -41,12 +44,9 @@ class MovieCard extends StatelessWidget {
         elevation: 5,
         child: InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => MovieDetailScreen(
-                          movie: movie,
-                        )));
+            movieProvider.setMovie(movie);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MovieDetailScreen()));
           },
           child: movieHero,
         ));
