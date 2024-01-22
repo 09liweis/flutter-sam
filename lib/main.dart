@@ -9,7 +9,7 @@ void main() {
   ApiService.getAPIRoutes();
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (_) => MainProvider())],
-    child: SamApp(),
+    child: const SamApp(),
   ));
 }
 
