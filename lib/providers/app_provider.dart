@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/models/movie_detail.dart';
 import 'package:fluttersam/services/expense_service.dart';
 
 import '../services/todo_service.dart';
@@ -38,6 +39,7 @@ class MainProvider extends ChangeNotifier {
   List<Movie> movies = [];
   String curMovieCategory = '';
   Movie movie = Movie();
+  MovieDetail movieDetail = MovieDetail();
 
   Future<void> fetchMovies(endPoint) async {
     curMovieCategory = endPoint;
@@ -58,9 +60,12 @@ class MainProvider extends ChangeNotifier {
 
   Future<void> fetchMovieSummary() async {
     loading = true;
+    notifyListeners();
     try {
-      movie = await MovieService.fetchMovieDetail(movie.getSummaryAPI());
-    } catch (e) {}
+      movieDetail = await MovieService.fetchMovieDetail(movie.getSummaryAPI());
+    } catch (e) {
+      print(e);
+    }
     loading = false;
     notifyListeners();
   }

@@ -10,7 +10,6 @@ class MovieDetailScreen extends StatefulWidget {
 }
 
 class _MovieDetailState extends State<MovieDetailScreen> {
-  Movie movie = Movie();
   @override
   void initState() {
     super.initState();
@@ -19,10 +18,16 @@ class _MovieDetailState extends State<MovieDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final movieProvider = Provider.of<MainProvider>(context);
+    final movie = movieProvider.movie;
+    final movieDetail = movieProvider.movieDetail;
+    final loading = movieProvider.loading;
     return Scaffold(
       appBar: AppBar(title: Text(movie.getTitle())),
       body: Center(
-        child: Text(movie.getSummaryAPI()),
+        child: loading
+            ? new CircularProgressIndicator()
+            : Text(movieDetail.getSummary()),
       ),
     );
   }
