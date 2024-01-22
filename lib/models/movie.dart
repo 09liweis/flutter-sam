@@ -78,16 +78,13 @@ class Movie {
     summaryAPI = movieSummaryAPI;
   }
 
-  factory Movie.fromJson(Map<String, dynamic> json) {
-    Movie movie = Movie();
-    movie.setId(json['_id'] ?? json['douban_id'] ?? json['imdb_id']);
-    movie.setTitle(json['title']);
-    movie.setPoster(json['poster']);
-    movie.setDoubanRating(json['douban_rating'] ?? 0);
-    movie.setIMDBRating(json['imdb_rating'] ?? 0);
-    movie.setEpisodes(json['episodes'] ?? 0);
-    movie
-        .setSummaryAPI(json.containsKey('apis') ? json['apis']['summary'] : '');
-    return movie;
-  }
+  Movie.fromJson(Map<String, dynamic> json)
+      : id = json['_id'] ?? json['douban_id'] ?? json['imdb_id'],
+        title = json['title'],
+        poster = json['poster'],
+        doubanRating = json['douban_rating'] ?? 0,
+        imdbRating = json['imdb_rating'] ?? 0,
+        episodes = json['episodes'] ?? 0,
+        currentEpisode = json['current_episodes'] ?? 0,
+        summaryAPI = json.containsKey('apis') ? json['apis']['summary'] : '';
 }
