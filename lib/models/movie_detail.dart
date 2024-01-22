@@ -22,6 +22,6 @@ class MovieDetail extends Movie {
   }
 
   MovieDetail.fromJson(Map<String, dynamic> json)
-      : summary = json['summary'],
+      : summary = json['summary'] ?? '',
         super.fromJson(json);
 }

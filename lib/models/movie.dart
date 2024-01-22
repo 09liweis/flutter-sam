@@ -80,8 +80,8 @@ class Movie {
 
   Movie.fromJson(Map<String, dynamic> json)
       : id = json['_id'] ?? json['douban_id'] ?? json['imdb_id'],
-        title = json['title'],
-        poster = json['poster'],
+        title = json['title'] ?? '',
+        poster = json['poster'] ?? '',
         doubanRating = json['douban_rating'] ?? 0,
         imdbRating = json['imdb_rating'] ?? 0,
         episodes = json['episodes'] ?? 0,
