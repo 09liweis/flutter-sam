@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersam/models/todo.dart';
-import '../screens/add_todo_page.dart';
+import '../../screens/add_todo_page.dart';
 
 class TodoItem extends StatelessWidget {
   final Todo task;
   const TodoItem({super.key, required this.task});
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return Card(
+        child: ListTile(
       onTap: () => {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
@@ -32,7 +33,7 @@ class TodoItem extends StatelessWidget {
         ),
         onPressed: () {},
       ),
-    );
+    ));
   }
 }
 
