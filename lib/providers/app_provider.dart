@@ -26,7 +26,7 @@ class MainProvider extends ChangeNotifier {
   Future<void> addTask(Todo task) async {
     try {
       Todo addedTodo = await TodoService.addTodo(task);
-      tasks.add(addedTodo);
+      fetchTasks();
     } catch (e) {}
     notifyListeners();
   }

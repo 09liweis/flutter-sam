@@ -4,8 +4,15 @@ import 'package:provider/provider.dart';
 import '../models/todo.dart';
 import '../providers/app_provider.dart';
 
-class AddTodoScreen extends StatelessWidget {
+class AddTodoScreen extends StatefulWidget {
+  const AddTodoScreen({super.key});
+  @override
+  _AddTodoScreenState createState() => _AddTodoScreenState();
+}
+
+class _AddTodoScreenState extends State<AddTodoScreen> {
   final TextEditingController _textEditingController = TextEditingController();
+  String todoDate = '';
 
   String _getFormattedValue(int value) {
     return value.toString().padLeft(2, '0');
@@ -16,8 +23,6 @@ class AddTodoScreen extends StatelessWidget {
     final todoProvider = Provider.of<MainProvider>(context);
 
     DateTime now = DateTime.now();
-    String formattedDate =
-        "${now.year}-${_getFormattedValue(now.month)}-${_getFormattedValue(now.day)}";
 
     return Scaffold(
       appBar: AppBar(
@@ -26,13 +31,24 @@ class AddTodoScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextField(
               controller: _textEditingController,
               decoration: const InputDecoration(
                 labelText: 'New Todo',
               ),
+            ),
+            CalendarDatePicker(
+              initialDate: now,
+              firstDate: now,
+              lastDate: DateTime(2100),
+              onDateChanged: (value) {
+                setState(() {
+                  todoDate =
+                      "${value.year}-${_getFormattedValue(value.month)}-${_getFormattedValue(value.day)}";
+                });
+              },
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(
@@ -41,7 +57,7 @@ class AddTodoScreen extends StatelessWidget {
                     id: (todoProvider.tasks.length + 1).toString(),
                     name: _textEditingController.text,
                     status: 'pending',
-                    date: formattedDate);
+                    date: todoDate);
                 todoProvider.addTask(newTodo);
                 Navigator.pop(context);
               },
