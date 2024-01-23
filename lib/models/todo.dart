@@ -11,6 +11,10 @@ class Todo {
     required this.date,
   });
 
+  String getId() {
+    return id;
+  }
+
   bool isDone() {
     return status == 'done';
   }

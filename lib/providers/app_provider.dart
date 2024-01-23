@@ -31,9 +31,9 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeTaskAtIndex(int index) {
-    tasks.removeAt(index);
-    notifyListeners();
+  void removeTaskAtIndex(Todo todo) async {
+    await TodoService.deleteTodo(todo);
+    fetchTasks();
   }
 
   List<Movie> movies = [];

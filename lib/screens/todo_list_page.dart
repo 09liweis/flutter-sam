@@ -42,10 +42,7 @@ class TodoScreen extends StatelessWidget {
           Expanded(
               child: todoProvider.loading
                   ? loadingWidget
-                  : TodoList(
-                      tasks: todoProvider.tasks,
-                      onPressed: todoProvider.removeTaskAtIndex,
-                    )),
+                  : TodoList(tasks: todoProvider.tasks)),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(

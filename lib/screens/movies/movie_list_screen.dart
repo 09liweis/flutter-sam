@@ -42,10 +42,7 @@ class MovieScreen extends StatelessWidget {
           Expanded(
               child: movieProvider.loading
                   ? const Center(child: CircularProgressIndicator())
-                  : MovieList(
-                      movies: movieProvider.movies,
-                      onPressed: movieProvider.removeTaskAtIndex,
-                    ))
+                  : MovieList(movies: movieProvider.movies))
         ],
       ),
       floatingActionButton: FloatingActionButton(

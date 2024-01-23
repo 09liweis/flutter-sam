@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttersam/models/todo.dart';
+import 'package:fluttersam/providers/app_provider.dart';
+import 'package:provider/provider.dart';
 import '../../screens/add_todo_page.dart';
 
 class TodoItem extends StatelessWidget {
@@ -7,6 +9,7 @@ class TodoItem extends StatelessWidget {
   const TodoItem({super.key, required this.task});
   @override
   Widget build(BuildContext context) {
+    final todoProvider = Provider.of<MainProvider>(context);
     return Card(
         child: ListTile(
       onTap: () => {
@@ -31,7 +34,9 @@ class TodoItem extends StatelessWidget {
           color: Colors.red,
           size: 30,
         ),
-        onPressed: () {},
+        onPressed: () {
+          todoProvider.removeTaskAtIndex(task);
+        },
       ),
     ));
   }
@@ -39,9 +44,8 @@ class TodoItem extends StatelessWidget {
 
 class TodoList extends StatelessWidget {
   final List<Todo> tasks;
-  final Function(int) onPressed;
 
-  const TodoList({super.key, required this.tasks, required this.onPressed});
+  const TodoList({super.key, required this.tasks});
 
   @override
   Widget build(BuildContext context) {

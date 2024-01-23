@@ -7,9 +7,8 @@ import 'package:provider/provider.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
-  final Function(int) onPressed;
 
-  const MovieList({super.key, required this.movies, required this.onPressed});
+  const MovieList({super.key, required this.movies});
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +44,10 @@ class MovieCard extends StatelessWidget {
         child: InkWell(
           onTap: () {
             movieProvider.setMovie(movie);
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MovieDetailScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MovieDetailScreen()));
           },
           child: movieHero,
         ));

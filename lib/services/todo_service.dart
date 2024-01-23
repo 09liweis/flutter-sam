@@ -28,4 +28,11 @@ class TodoService extends ApiService {
       throw Exception('Add task fail');
     }
   }
+
+  static Future<dynamic> deleteTodo(Todo todo) async {
+    final response = await ApiService.delete('todos/' + todo.getId());
+    if (response.statusCode == 200) {
+      return null;
+    }
+  }
 }
