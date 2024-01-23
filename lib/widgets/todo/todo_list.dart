@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttersam/models/todo.dart';
 import 'package:fluttersam/providers/app_provider.dart';
 import 'package:provider/provider.dart';
-import '../../screens/add_todo_page.dart';
+import '../../screens/todos/add_todo_page.dart';
 
 class TodoItem extends StatelessWidget {
   final Todo task;

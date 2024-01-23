@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './add_todo_page.dart';
-import '../widgets/todo/todo_list.dart';
-import '../providers/app_provider.dart';
+import '../../widgets/todo/todo_list.dart';
+import '../../providers/app_provider.dart';
 
 class TodoScreen extends StatelessWidget {
   TodoScreen({super.key});
@@ -20,6 +20,7 @@ class TodoScreen extends StatelessWidget {
     const titleBar = Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        Text("Todo List"),
         Icon(
           Icons.menu,
           color: Colors.white,
