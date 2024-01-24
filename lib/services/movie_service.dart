@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:fluttersam/models/movie_detail.dart';
 import 'package:fluttersam/services/api_service.dart';
 
@@ -14,6 +15,7 @@ class MovieService extends ApiService {
         return List<Movie>.from(
             jsonData['movies'].map((task) => Movie.fromJson(task)));
       } catch (e) {
+        log(e.toString());
         throw Exception('Failed to fetch tasks');
       }
     } else {
@@ -26,7 +28,7 @@ class MovieService extends ApiService {
       final response = await ApiService.get(summaryAPI);
       return MovieDetail.fromJson(jsonDecode(response.body));
     } catch (e) {
-      print(e);
+      log(e.toString());
       throw Exception(e);
     }
   }

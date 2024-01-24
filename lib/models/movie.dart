@@ -2,8 +2,8 @@ class Movie {
   String id;
   String title;
   String poster;
-  double doubanRating;
-  double imdbRating;
+  String doubanRating;
+  String imdbRating;
   int currentEpisode;
   int episodes;
   String summaryAPI;
@@ -12,8 +12,8 @@ class Movie {
       {this.id = '',
       this.title = '',
       this.poster = '',
-      this.doubanRating = 0,
-      this.imdbRating = 0,
+      this.doubanRating = '',
+      this.imdbRating = '',
       this.currentEpisode = 0,
       this.episodes = 0,
       this.summaryAPI = ''});
@@ -50,7 +50,7 @@ class Movie {
     return doubanRating.toString();
   }
 
-  void setDoubanRating(double movieDoubanRating) {
+  void setDoubanRating(String movieDoubanRating) {
     doubanRating = movieDoubanRating;
   }
 
@@ -58,7 +58,7 @@ class Movie {
     return imdbRating.toString();
   }
 
-  void setIMDBRating(double movieIMDBRating) {
+  void setIMDBRating(String movieIMDBRating) {
     imdbRating = movieIMDBRating;
   }
 
@@ -82,8 +82,8 @@ class Movie {
       : id = json['_id'] ?? json['douban_id'] ?? json['imdb_id'],
         title = json['title'] ?? '',
         poster = json['poster'] ?? '',
-        doubanRating = json['douban_rating'] ?? 0,
-        imdbRating = json['imdb_rating'] ?? 0,
+        doubanRating = json['douban_rating'] ?? '',
+        imdbRating = json['imdb_rating'] ?? '',
         episodes = json['episodes'] ?? 0,
         currentEpisode = json['current_episodes'] ?? 0,
         summaryAPI = json['apis']?['summary'] ?? '';

@@ -105,7 +105,6 @@ class MovieCardInfoRating extends StatelessWidget {
         decoration: const BoxDecoration(
             color: Color(0xff028e07),
             borderRadius: BorderRadius.all(Radius.circular(5))),
-        width: 30,
         padding: const EdgeInsets.all(5),
         child: Text(
           movie.getIMDBRating(),
