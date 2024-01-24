@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttersam/models/todo.dart';
@@ -18,7 +16,7 @@ class TodoItem extends StatelessWidget {
       style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: Colors.black45,
+          color: const Color(0x73130303),
           decoration: (task.isDone())
               ? TextDecoration.lineThrough
               : TextDecoration.none),
