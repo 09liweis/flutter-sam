@@ -86,5 +86,5 @@ class Movie {
         imdbRating = json['imdb_rating'] ?? 0,
         episodes = json['episodes'] ?? 0,
         currentEpisode = json['current_episodes'] ?? 0,
-        summaryAPI = json.containsKey('apis') ? json['apis']['summary'] : '';
+        summaryAPI = json['apis']?['summary'] ?? '';
 }
