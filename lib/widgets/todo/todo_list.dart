@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttersam/models/todo.dart';
 import 'package:fluttersam/providers/app_provider.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,8 @@ class TodoItem extends StatelessWidget {
     final todoProvider = Provider.of<MainProvider>(context);
     return Card(
         child: ListTile(
+      onLongPress: () async =>
+          {await Clipboard.setData(ClipboardData(text: task.getName()))},
       onTap: () => {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const AddTodoScreen()))
