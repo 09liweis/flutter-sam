@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:fluttersam/screens/chat_screen.dart';
-import 'package:fluttersam/screens/expense_list_page.dart';
-import 'package:fluttersam/screens/movies/movie_list_screen.dart';
-import 'package:fluttersam/screens/todos/todo_list_page.dart';
 import 'package:fluttersam/widgets/card.dart';
 
 class DashboardCard {
   final String title;
   Color bgColor;
-  final StatelessWidget screen;
+  final String route;
   IconData icon;
 
   DashboardCard(
       {required this.title,
       this.bgColor = Colors.blue,
-      required this.screen,
+      required this.route,
       this.icon = Icons.list});
 }
 
 List<DashboardCard> cards = [
   DashboardCard(
-      screen: TodoScreen(), title: 'Todos', bgColor: const Color(0xfff96257)),
-  DashboardCard(screen: MovieScreen(), title: 'Movies', icon: Icons.movie),
-  DashboardCard(screen: ExpenseScreen(), title: 'Expenses', icon: Icons.paid),
-  DashboardCard(screen: ChatMessageScreen(), title: 'Chat'),
-  DashboardCard(screen: TodoScreen(), title: 'Places'),
-  DashboardCard(screen: TodoScreen(), title: 'Comments'),
-  DashboardCard(screen: TodoScreen(), title: 'Test'),
+      route: '/todos', title: 'Todos', bgColor: const Color(0xfff96257)),
+  DashboardCard(route: '/movies', title: 'Movies', icon: Icons.movie),
+  DashboardCard(route: '/expenses', title: 'Expenses', icon: Icons.paid),
+  DashboardCard(route: '/chat', title: 'Chat'),
+  DashboardCard(route: '/todos', title: 'Places'),
+  DashboardCard(route: '/todos', title: 'Comments'),
+  DashboardCard(route: '/todos', title: 'Test'),
 ];
 
 class DashboardCardList extends StatelessWidget {

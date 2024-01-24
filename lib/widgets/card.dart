@@ -19,8 +19,7 @@ class CardBlock extends StatelessWidget {
       color: card.bgColor,
       child: InkWell(
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => card.screen));
+          Navigator.pushNamed(context, card.route);
         },
         child: Center(
           child: Row(

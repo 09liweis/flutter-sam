@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/screens/chat_screen.dart';
+import 'package:fluttersam/screens/expense_list_page.dart';
+import 'package:fluttersam/screens/movies/movie_list_screen.dart';
+import 'package:fluttersam/screens/todos/todo_list_page.dart';
 import 'package:fluttersam/services/api_service.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +27,12 @@ class SamApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: TabbarScreen(),
+      routes: {
+        '/todos': (context) => TodoScreen(),
+        '/movies': (context) => MovieScreen(),
+        '/expenses': (context) => ExpenseScreen(),
+        '/chat': (context) => ChatMessageScreen()
+      },
     );
   }
 }
