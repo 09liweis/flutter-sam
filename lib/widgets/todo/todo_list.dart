@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttersam/models/todo.dart';
@@ -11,6 +13,16 @@ class TodoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<MainProvider>(context);
+    var todoTitle = Text(
+      task.getName(),
+      style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black45,
+          decoration: (task.isDone())
+              ? TextDecoration.lineThrough
+              : TextDecoration.none),
+    );
     return Card(
         child: ListTile(
       onLongPress: () async =>
@@ -20,16 +32,10 @@ class TodoItem extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const AddTodoScreen()))
       },
       leading: const Icon(Icons.list),
-      title: Text(
-        task.getName(),
-        style: TextStyle(
-            decoration: (task.isDone())
-                ? TextDecoration.lineThrough
-                : TextDecoration.none),
-      ),
+      title: todoTitle,
       subtitle: Text(
         task.getDate(),
-        style: const TextStyle(color: Colors.cyan, fontSize: 15),
+        style: const TextStyle(color: Colors.amber, fontSize: 15),
       ),
       trailing: IconButton(
         icon: const Icon(
@@ -55,8 +61,7 @@ class TodoList extends StatelessWidget {
     return ListView.builder(
       itemCount: tasks.length,
       itemBuilder: (context, index) {
-        final task = tasks[index];
-        return TodoItem(task: task);
+        return TodoItem(task: tasks[index]);
       },
     );
   }
