@@ -9,6 +9,16 @@ import 'package:provider/provider.dart';
 import './screens/tabbar_page.dart';
 import './providers/app_provider.dart';
 
+final ThemeData myTheme = ThemeData(
+  primaryColor: Colors.lightGreen,
+  primarySwatch: Colors.green,
+  textTheme: const TextTheme(
+    headline1: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    bodyText1: TextStyle(fontSize: 16),
+    // ...more text styles
+  ),
+);
+
 void main() {
   ApiService.getAPIRoutes();
   runApp(MultiProvider(
@@ -23,9 +33,7 @@ class SamApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: myTheme,
       home: TabbarScreen(),
       routes: {
         '/todos': (context) => TodoScreen(),
