@@ -1,14 +1,14 @@
 class Todo {
-  final String id;
-  final String name;
-  final String status;
-  final String date;
+  String id;
+  String name;
+  String status;
+  String date;
 
   Todo({
-    required this.id,
-    required this.name,
-    required this.status,
-    required this.date,
+    this.id = '',
+    this.name = '',
+    this.status = '',
+    this.date = '',
   });
 
   String getId() {

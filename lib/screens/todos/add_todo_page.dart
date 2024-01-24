@@ -5,7 +5,7 @@ import '../../models/todo.dart';
 import '../../providers/app_provider.dart';
 
 class AddTodoScreen extends StatefulWidget {
-  const AddTodoScreen({super.key});
+  const AddTodoScreen({super.key, todo});
   @override
   _AddTodoScreenState createState() => _AddTodoScreenState();
 }

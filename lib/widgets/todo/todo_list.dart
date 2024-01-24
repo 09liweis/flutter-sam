@@ -13,8 +13,8 @@ class TodoItem extends StatelessWidget {
     return Card(
         child: ListTile(
       onTap: () => {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AddTodoScreen()))
       },
       leading: const Icon(Icons.list),
       title: Text(
