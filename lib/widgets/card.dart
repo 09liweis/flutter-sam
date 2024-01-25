@@ -4,7 +4,7 @@ import 'package:fluttersam/screens/dashboard_screen.dart';
 class CardBlock extends StatelessWidget {
   final DashboardCard card;
 
-  const CardBlock({required this.card});
+  const CardBlock({super.key, required this.card});
   @override
   Widget build(BuildContext context) {
     const cardTextStyle = TextStyle(
@@ -24,7 +24,7 @@ class CardBlock extends StatelessWidget {
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [cardIcon, Container(width: 10), cardText],
+            children: [cardIcon, const SizedBox(width: 10), cardText],
           ),
         ),
       ),
