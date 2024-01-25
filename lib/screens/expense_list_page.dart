@@ -10,45 +10,29 @@ class ExpenseScreen extends StatelessWidget {
     final mainProvider = Provider.of<MainProvider>(context);
     mainProvider.fetchStatistic();
 
+    Map<String, dynamic>? categoryPrice = mainProvider.es.getCategoryPrice();
     return Scaffold(
         appBar: AppBar(
           title: const Text('Expense Tracker'),
         ),
         body: RefreshIndicator(
-          onRefresh: onRefresh,
-          child: ListView(
-            children: <Widget>[
-              const ExpenseItem(
-                category: 'Food',
-                amount: '50.00',
-                date: 'June 20, 2023',
-              ),
-              const ExpenseItem(
-                category: 'Transportation',
-                amount: '25.00',
-                date: 'June 19, 2023',
-              ),
-              const ExpenseItem(
-                category: 'Entertainment',
-                amount: '10.00',
-                date: 'June 18, 2023',
-              ),
-              // Add more expense items as needed
-            ],
-          ),
-        ));
+            onRefresh: onRefresh,
+            child: Column(
+              children: [
+                Text("Date " + mainProvider.es.getDate()),
+                Text("Total " + mainProvider.es.getTotal().toString()),
+              ],
+            )));
   }
 }
 
 class ExpenseItem extends StatelessWidget {
   final String category;
   final String amount;
-  final String date;
 
   const ExpenseItem({
     required this.category,
     required this.amount,
-    required this.date,
   });
 
   @override

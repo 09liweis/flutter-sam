@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/models/expense_statistics.dart';
 import 'package:fluttersam/models/movie_detail.dart';
 import 'package:fluttersam/services/expense_service.dart';
 
@@ -70,7 +71,10 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ExpenseStatistics es = ExpenseStatistics();
+
   Future<void> fetchStatistic() async {
-    await ExpenseService.fetchStatistic();
+    es = await ExpenseService.fetchStatistic();
+    notifyListeners();
   }
 }
