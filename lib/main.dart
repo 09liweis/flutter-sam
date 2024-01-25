@@ -13,8 +13,8 @@ final ThemeData myTheme = ThemeData(
   primaryColor: Colors.lightGreen,
   primarySwatch: Colors.green,
   textTheme: const TextTheme(
-    headline1: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-    bodyText1: TextStyle(fontSize: 16),
+    titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    bodyMedium: TextStyle(fontSize: 16),
     // ...more text styles
   ),
 );
