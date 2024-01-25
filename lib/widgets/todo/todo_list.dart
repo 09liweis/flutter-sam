@@ -26,8 +26,12 @@ class TodoItem extends StatelessWidget {
       onLongPress: () async =>
           {await Clipboard.setData(ClipboardData(text: task.getName()))},
       onTap: () => {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AddTodoScreen()))
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => AddTodoScreen(
+                      todo: task,
+                    )))
       },
       leading: const Icon(Icons.list),
       title: todoTitle,

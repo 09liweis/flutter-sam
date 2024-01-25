@@ -5,7 +5,8 @@ import '../../models/todo.dart';
 import '../../providers/app_provider.dart';
 
 class AddTodoScreen extends StatefulWidget {
-  const AddTodoScreen({super.key, todo});
+  final Todo todo;
+  const AddTodoScreen({super.key, required this.todo});
   @override
   _AddTodoScreenState createState() => _AddTodoScreenState();
 }
@@ -19,10 +20,18 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
   }
 
   @override
+  void initState() {
+    _textEditingController.text = widget.todo.getName();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<MainProvider>(context);
 
-    DateTime now = DateTime.now();
+    DateTime now = widget.todo.getDate() != ''
+        ? DateTime.parse(widget.todo.getDate())
+        : DateTime.now();
 
     return Scaffold(
       appBar: AppBar(

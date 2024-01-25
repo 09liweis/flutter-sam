@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/models/todo.dart';
 import 'package:provider/provider.dart';
 import './add_todo_page.dart';
 import '../../widgets/todo/todo_list.dart';
@@ -60,7 +61,9 @@ class TodoScreen extends StatelessWidget {
         elevation: 1.4,
         onPressed: () => {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddTodoScreen(todo: Todo())))
         },
         child: addTodoIcon,
       ),
