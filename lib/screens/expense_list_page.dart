@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/models/expense_statistics.dart';
 import 'package:provider/provider.dart';
 import '../providers/app_provider.dart';
 
@@ -9,26 +10,27 @@ class ExpenseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);
     mainProvider.fetchStatistic();
+    ExpenseStatistics es = mainProvider.es;
+    List<CategoryExpenses> ce = es.getCategoryPrice();
 
-    Map<String, dynamic>? categoryPrice = mainProvider.es.getCategoryPrice();
     return Scaffold(
         appBar: AppBar(
           title: const Text('Expense Tracker'),
         ),
         body: RefreshIndicator(
             onRefresh: onRefresh,
-            child: Column(
-              children: [
-                Text("Date " + mainProvider.es.getDate()),
-                Text("Total " + mainProvider.es.getTotal().toString()),
-              ],
-            )));
+            child: ListView.builder(
+                itemCount: ce.length,
+                itemBuilder: (context, idx) {
+                  return ExpenseItem(
+                      category: ce[idx].category, amount: ce[idx].total);
+                })));
   }
 }
 
 class ExpenseItem extends StatelessWidget {
   final String category;
-  final String amount;
+  final double amount;
 
   const ExpenseItem({
     required this.category,
@@ -56,7 +58,7 @@ class ExpenseItem extends StatelessWidget {
         },
       ),
       trailing: Text(
-        '\$$amount',
+        amount.toString(),
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
