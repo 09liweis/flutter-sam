@@ -23,42 +23,42 @@ class ExpenseScreen extends StatelessWidget {
                 itemCount: ce.length,
                 itemBuilder: (context, idx) {
                   return ExpenseItem(
-                      category: ce[idx].category, amount: ce[idx].total);
+                    categoryExpenses: ce[idx],
+                  );
                 })));
   }
 }
 
 class ExpenseItem extends StatelessWidget {
-  final String category;
-  final String amount;
+  final CategoryExpenses categoryExpenses;
 
   const ExpenseItem({
-    required this.category,
-    required this.amount,
+    required this.categoryExpenses,
   });
 
   @override
   Widget build(BuildContext context) {
+    List<Expense> expenses = categoryExpenses.items;
     return ListTile(
-      onTap: () => {print(category)},
+      onTap: () => {print("")},
       // leading: const CircleAvatar(
       //   child: Icon(Icons.food_bank),
       // ),
-      title: Text(category),
+      title: Text(categoryExpenses.category),
       subtitle: ListView.builder(
         shrinkWrap: true,
         physics: ClampingScrollPhysics(),
-        itemCount: 3,
+        itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
           return ListTile(
             title: Text('Nested Item $nestedIndex'),
             leading: Icon(Icons.foggy),
-            trailing: Text('345'),
+            trailing: Text(expenses[nestedIndex].price),
           );
         },
       ),
       trailing: Text(
-        amount,
+        categoryExpenses.total,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
