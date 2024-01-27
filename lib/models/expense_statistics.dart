@@ -45,7 +45,7 @@ class CategoryExpenses {
 }
 
 class Expense {
-  String title;
+  String? title;
   double price;
   String category;
   String date;
@@ -54,7 +54,7 @@ class Expense {
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
         price: json['price'],
-        title: json['title'],
+        title: json['title'] ?? '',
         category: json['category'],
         date: json['date']);
   }
