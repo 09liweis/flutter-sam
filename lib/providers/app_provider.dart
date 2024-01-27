@@ -74,7 +74,11 @@ class MainProvider extends ChangeNotifier {
   ExpenseStatistics es = ExpenseStatistics();
 
   Future<void> fetchStatistic() async {
-    es = await ExpenseService.fetchStatistic();
+    try {
+      es = await ExpenseService.fetchStatistic();
+    } catch (e) {
+      print(e);
+    }
     notifyListeners();
   }
 }
