@@ -30,7 +30,7 @@ class ExpenseScreen extends StatelessWidget {
 
 class ExpenseItem extends StatelessWidget {
   final String category;
-  final double amount;
+  final String amount;
 
   const ExpenseItem({
     required this.category,
@@ -58,7 +58,7 @@ class ExpenseItem extends StatelessWidget {
         },
       ),
       trailing: Text(
-        amount.toString(),
+        amount,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),

@@ -1,15 +1,15 @@
 class ExpenseStatistics {
   ExpenseStatistics({
-    this.total = 0,
+    this.total = '',
     this.date = '',
     this.categoryPrice = const [],
   });
 
-  double total;
+  String total;
   String date;
   List<CategoryExpenses> categoryPrice;
 
-  double getTotal() {
+  String getTotal() {
     return total;
   }
 
@@ -31,10 +31,11 @@ class ExpenseStatistics {
 }
 
 class CategoryExpenses {
-  double total;
+  String total;
   String category;
   List<Expense> items;
-  CategoryExpenses({this.total = 0, this.category = '', this.items = const []});
+  CategoryExpenses(
+      {this.total = '', this.category = '', this.items = const []});
   factory CategoryExpenses.fromJson(Map<String, dynamic> json) {
     return CategoryExpenses(
         total: json['total'],
@@ -46,11 +47,11 @@ class CategoryExpenses {
 
 class Expense {
   String? title;
-  double price;
+  String price;
   String category;
   String date;
   Expense(
-      {this.title = '', this.price = 0, this.category = '', this.date = ''});
+      {this.title = '', this.price = '', this.category = '', this.date = ''});
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
         price: json['price'],
@@ -59,3 +60,5 @@ class Expense {
         date: json['date']);
   }
 }
+
+class Place {}
