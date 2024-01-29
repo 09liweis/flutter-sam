@@ -55,7 +55,7 @@ class ExpenseItem extends StatelessWidget {
           return ListTile(
             title: Text(place?.getName() ?? ''),
             leading: Icon(Icons.foggy),
-            trailing: Text(expenses[nestedIndex].price),
+            trailing: Text(expense.getPrice()),
           );
         },
       ),

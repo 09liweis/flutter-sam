@@ -61,6 +61,10 @@ class Expense {
     return place;
   }
 
+  String getPrice() {
+    return price;
+  }
+
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
         price: json['price'],
