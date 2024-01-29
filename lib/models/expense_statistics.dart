@@ -52,14 +52,18 @@ class Expense {
   String date;
   Place? place;
   Expense(
-      {this.title = '', this.price = '', this.category = '', this.date = ''});
+      {this.title = '',
+      this.price = '',
+      this.category = '',
+      this.date = '',
+      this.place});
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
-      price: json['price'],
-      title: json['title'] ?? '',
-      category: json['category'],
-      date: json['date'],
-    );
+        price: json['price'],
+        title: json['title'] ?? '',
+        category: json['category'],
+        date: json['date'],
+        place: Place.fromJson(json['place']));
   }
 }
 

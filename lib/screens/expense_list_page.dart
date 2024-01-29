@@ -51,7 +51,7 @@ class ExpenseItem extends StatelessWidget {
         itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
           return ListTile(
-            title: Text('Nested Item $nestedIndex'),
+            title: Text(expenses[nestedIndex].place?.name ?? ''),
             leading: Icon(Icons.foggy),
             trailing: Text(expenses[nestedIndex].price),
           );
