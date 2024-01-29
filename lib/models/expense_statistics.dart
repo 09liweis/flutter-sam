@@ -50,15 +50,23 @@ class Expense {
   String price;
   String category;
   String date;
+  Place? place;
   Expense(
       {this.title = '', this.price = '', this.category = '', this.date = ''});
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
-        price: json['price'],
-        title: json['title'] ?? '',
-        category: json['category'],
-        date: json['date']);
+      price: json['price'],
+      title: json['title'] ?? '',
+      category: json['category'],
+      date: json['date'],
+    );
   }
 }
 
-class Place {}
+class Place {
+  String name;
+  Place({this.name = ''});
+  factory Place.fromJson(Map<String, dynamic> json) {
+    return Place(name: json['name']);
+  }
+}
