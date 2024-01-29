@@ -50,8 +50,10 @@ class ExpenseItem extends StatelessWidget {
         physics: ClampingScrollPhysics(),
         itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
+          Expense expense = expenses[nestedIndex];
+          Place? place = expense.place;
           return ListTile(
-            title: Text(expenses[nestedIndex].place?.name ?? ''),
+            title: Text(place?.getName() ?? ''),
             leading: Icon(Icons.foggy),
             trailing: Text(expenses[nestedIndex].price),
           );

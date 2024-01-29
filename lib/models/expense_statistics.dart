@@ -70,6 +70,10 @@ class Expense {
 class Place {
   String name;
   Place({this.name = ''});
+  String getName() {
+    return name;
+  }
+
   factory Place.fromJson(Map<String, dynamic> json) {
     return Place(name: json['name']);
   }
