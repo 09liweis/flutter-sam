@@ -57,6 +57,10 @@ class Expense {
       this.category = '',
       this.date = '',
       this.place});
+  Place? getPlace() {
+    return place;
+  }
+
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
         price: json['price'],

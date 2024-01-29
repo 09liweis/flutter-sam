@@ -51,7 +51,7 @@ class ExpenseItem extends StatelessWidget {
         itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
           Expense expense = expenses[nestedIndex];
-          Place? place = expense.place;
+          Place? place = expense.getPlace();
           return ListTile(
             title: Text(place?.getName() ?? ''),
             leading: Icon(Icons.foggy),
