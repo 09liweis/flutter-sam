@@ -33,6 +33,7 @@ class ExpenseItem extends StatelessWidget {
   final CategoryExpenses categoryExpenses;
 
   const ExpenseItem({
+    super.key,
     required this.categoryExpenses,
   });
 
@@ -51,7 +52,7 @@ class ExpenseItem extends StatelessWidget {
         itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
           Expense expense = expenses[nestedIndex];
-          Place? place = ese.getPlace();
+          Place? place = expense.getPlace();
           return ListTile(
             title: Text(place?.getName() ?? ''),
             leading: Icon(Icons.foggy),
