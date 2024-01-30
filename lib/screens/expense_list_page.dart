@@ -40,7 +40,8 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Expense> expenses = categoryExpenses.items;
-    return ListTile(
+    return Card(
+        child: ListTile(
       onTap: () => {print("")},
       // leading: const CircleAvatar(
       //   child: Icon(Icons.food_bank),
@@ -55,7 +56,6 @@ class ExpenseItem extends StatelessWidget {
           Place? place = expense.getPlace();
           return ListTile(
             title: Text(place?.getName() ?? ''),
-            leading: Icon(Icons.foggy),
             trailing: Text(expense.getPrice()),
           );
         },
@@ -66,6 +66,6 @@ class ExpenseItem extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-    );
+    ));
   }
 }
