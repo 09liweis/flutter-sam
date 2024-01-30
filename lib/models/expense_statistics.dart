@@ -36,6 +36,11 @@ class CategoryExpenses {
   List<Expense> items;
   CategoryExpenses(
       {this.total = '', this.category = '', this.items = const []});
+
+  String getTotal() {
+    return total;
+  }
+
   factory CategoryExpenses.fromJson(Map<String, dynamic> json) {
     return CategoryExpenses(
         total: json['total'],

@@ -51,7 +51,7 @@ class ExpenseItem extends StatelessWidget {
         itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
           Expense expense = expenses[nestedIndex];
-          Place? place = expense.getPlace();
+          Place? place = ese.getPlace();
           return ListTile(
             title: Text(place?.getName() ?? ''),
             leading: Icon(Icons.foggy),
@@ -60,7 +60,7 @@ class ExpenseItem extends StatelessWidget {
         },
       ),
       trailing: Text(
-        categoryExpenses.total,
+        categoryExpenses.getTotal(),
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
