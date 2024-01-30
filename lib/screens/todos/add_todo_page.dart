@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/todo.dart';
-import '../providers/todo_provider.dart';
+import '../../models/todo.dart';
+import '../../providers/app_provider.dart';
 
-class AddTodoScreen extends StatelessWidget {
+class AddTodoScreen extends StatefulWidget {
+  final Todo todo;
+  const AddTodoScreen({super.key, required this.todo});
+  @override
+  _AddTodoScreenState createState() => _AddTodoScreenState();
+}
+
+class _AddTodoScreenState extends State<AddTodoScreen> {
   final TextEditingController _textEditingController = TextEditingController();
+  String todoDate = '';
 
   String _getFormattedValue(int value) {
     return value.toString().padLeft(2, '0');
   }
 
   @override
+  void initState() {
+    _textEditingController.text = widget.todo.getName();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final todoProvider = Provider.of<MainProvider>(context);
 
-    DateTime now = DateTime.now();
-    String formattedDate =
-        "${now.year}-${_getFormattedValue(now.month)}-${_getFormattedValue(now.day)}";
+    DateTime now = widget.todo.getDate() != ''
+        ? DateTime.parse(widget.todo.getDate())
+        : DateTime.now();
 
     return Scaffold(
       appBar: AppBar(
@@ -26,13 +40,24 @@ class AddTodoScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextField(
               controller: _textEditingController,
               decoration: const InputDecoration(
                 labelText: 'New Todo',
               ),
+            ),
+            CalendarDatePicker(
+              initialDate: now,
+              firstDate: now,
+              lastDate: DateTime(2100),
+              onDateChanged: (value) {
+                setState(() {
+                  todoDate =
+                      "${value.year}-${_getFormattedValue(value.month)}-${_getFormattedValue(value.day)}";
+                });
+              },
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(
@@ -41,7 +66,7 @@ class AddTodoScreen extends StatelessWidget {
                     id: (todoProvider.tasks.length + 1).toString(),
                     name: _textEditingController.text,
                     status: 'pending',
-                    date: formattedDate);
+                    date: todoDate);
                 todoProvider.addTask(newTodo);
                 Navigator.pop(context);
               },

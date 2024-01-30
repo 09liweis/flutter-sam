@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/movie_list.dart';
-import '../../providers/todo_provider.dart';
+import '../../providers/app_provider.dart';
 
 class MovieScreen extends StatelessWidget {
   const MovieScreen({super.key});
@@ -10,19 +10,19 @@ class MovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final movieProvider = Provider.of<MainProvider>(context);
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (movieProvider.movies.isEmpty) {
         movieProvider.fetchMovies("");
       }
     });
 
-    List<String> categories = [
-      'My Movies',
-      'imdb_boxoffice',
-      'popular',
-      'in_theatre',
-      'comming',
-      'chart'
+    List<Map<String, String>> categories = [
+      {'url': '', 'tl': 'My Movies'},
+      {'url': 'imdb_boxoffice', 'tl': 'IMDB'},
+      {'url': 'popular', 'tl': 'Popular'},
+      {'url': 'in_theatre', 'tl': 'In theatre'},
+      {'url': 'comming', 'tl': 'Comming Soon'},
+      {'url': 'chart', 'tl': 'Douban Chart'}
     ];
 
     return Scaffold(
@@ -37,15 +37,12 @@ class MovieScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
                 itemBuilder: (context, index) =>
-                    buildCategory(categories, index, context)),
+                    buildCategory(categories[index], index, context)),
           ),
           Expanded(
               child: movieProvider.loading
                   ? const Center(child: CircularProgressIndicator())
-                  : MovieList(
-                      movies: movieProvider.movies,
-                      onPressed: movieProvider.removeTaskAtIndex,
-                    ))
+                  : MovieList(movies: movieProvider.movies))
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -59,18 +56,19 @@ class MovieScreen extends StatelessWidget {
   }
 
   Padding buildCategory(
-      List<String> categories, int index, BuildContext context) {
+      Map<String, String> category, int index, BuildContext context) {
     final movieProvider = Provider.of<MainProvider>(context);
+    bool indicateWidth = movieProvider.curMovieCategory == category['url'];
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: GestureDetector(
             onTap: () {
-              movieProvider.fetchMovies(categories[index]);
+              movieProvider.fetchMovies(category['url']);
             },
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                categories[index],
+                category['tl'] ?? '',
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall
@@ -78,7 +76,7 @@ class MovieScreen extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
-                width: 40,
+                width: indicateWidth ? 40 : 0,
                 height: 6,
                 decoration: BoxDecoration(
                     color: Colors.red, borderRadius: BorderRadius.circular(10)),

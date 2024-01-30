@@ -1,134 +1,93 @@
 class ExpenseStatistics {
   ExpenseStatistics({
-    required this.total,
-    required this.date,
-    required this.categoryPrice,
+    this.total = '',
+    this.date = '',
+    this.categoryPrice = const [],
   });
 
-  factory ExpenseStatistics.fromMap(Map<String, dynamic> map) =>
+  String total;
+  String date;
+  List<CategoryExpenses> categoryPrice;
+
+  String getTotal() {
+    return total;
+  }
+
+  String getDate() {
+    return date;
+  }
+
+  List<CategoryExpenses> getCategoryPrice() {
+    return categoryPrice;
+  }
+
+  factory ExpenseStatistics.fromMap(Map<String, dynamic> json) =>
       ExpenseStatistics(
-        total: map['total'],
-        date: map['date'],
-        categoryPrice: CategoryPrice.fromMap(map['categoryPrice']),
+        total: json['total'],
+        date: json['date'],
+        categoryPrice: List<CategoryExpenses>.from(
+            json['categoryPrice'].map((c) => CategoryExpenses.fromJson(c))),
       );
-
-  double total;
-  String date;
-  CategoryPrice categoryPrice;
-
-  Map<String, dynamic> toMap() => {
-        'total': total,
-        'date': date,
-        'categoryPrice': categoryPrice.toMap(),
-      };
 }
 
-class CategoryPrice {
-  CategoryPrice({
-    required this.food,
-    required this.grocery,
-    required this.gift,
-    required this.movie,
-    required this.fuel,
-  });
-
-  factory CategoryPrice.fromMap(Map<String, dynamic> map) => CategoryPrice(
-        food: Food.fromMap(map['food']),
-        grocery: Grocery.fromMap(map['grocery']),
-        gift: Gift.fromMap(map['gift']),
-        movie: Movie.fromMap(map['movie']),
-        fuel: Fuel.fromMap(map['fuel']),
-      );
-
-  Map<String, dynamic> toMap() => {
-        'food': food.toMap(),
-        'grocery': grocery.toMap(),
-        'gift': gift.toMap(),
-        'movie': movie.toMap(),
-        'fuel': fuel.toMap(),
-      };
-}
-
-class Items {
-  Items({
-    required this.Id,
-    required this.price,
-    required this.date,
-    required this.category,
-    required this.place,
-    required this.title,
-  });
-
-  factory Items.fromMap(Map<String, dynamic> map) => Items(
-        Id: map['_id'],
-        price: map['price'],
-        date: map['date'],
-        category: map['category'],
-        place: Place.fromMap(map['place']),
-        title: map['title'],
-      );
-
-  String Id;
-  double price;
-  String date;
+class CategoryExpenses {
+  String total;
   String category;
-  Place place;
-  String? title;
+  List<Expense> items;
+  CategoryExpenses(
+      {this.total = '', this.category = '', this.items = const []});
 
-  Map<String, dynamic> toMap() => {
-        '_id': Id,
-        'price': price,
-        'date': date,
-        'category': category,
-        'place': place.toMap(),
-        'title': title,
-      };
+  String getTotal() {
+    return total;
+  }
+
+  factory CategoryExpenses.fromJson(Map<String, dynamic> json) {
+    return CategoryExpenses(
+        total: json['total'],
+        category: json['category'],
+        items: List<Expense>.from(
+            json['items'].map((item) => Expense.fromJson(item))));
+  }
+}
+
+class Expense {
+  String? title;
+  String price;
+  String category;
+  String date;
+  Place? place;
+  Expense(
+      {this.title = '',
+      this.price = '',
+      this.category = '',
+      this.date = '',
+      this.place});
+  Place? getPlace() {
+    return place;
+  }
+
+  String getPrice() {
+    return price;
+  }
+
+  factory Expense.fromJson(Map<String, dynamic> json) {
+    return Expense(
+        price: json['price'],
+        title: json['title'] ?? '',
+        category: json['category'],
+        date: json['date'],
+        place: Place.fromJson(json['place']));
+  }
 }
 
 class Place {
-  Place({
-    required this.photos,
-    required this.types,
-    required this.transactions,
-    required this.Id,
-    required this.placeId,
-    required this.name,
-    required this.address,
-    required this.lat,
-    required this.lng,
-  });
-
-  factory Place.fromMap(Map<String, dynamic> map) => Place(
-        photos: List<dynamic>.from(map['photos']),
-        types: List<dynamic>.from(map['types']),
-        transactions: List<dynamic>.from(map['transactions']),
-        Id: map['_id'],
-        placeId: map['place_id'],
-        name: map['name'],
-        address: map['address'],
-        lat: map['lat'],
-        lng: map['lng'],
-      );
-
-  List<dynamic> photos;
-  List<dynamic> types;
-  List<dynamic> transactions;
-  String Id;
-  String placeId;
   String name;
-  String address;
-  String lat;
-  String lng;
+  Place({this.name = ''});
+  String getName() {
+    return name;
+  }
 
-  Map<String, dynamic> toMap() => {
-        'photos': photos.map((e) => e).toList(),
-        'types': types.map((e) => e).toList(),
-        'transactions': transactions.map((e) => e).toList(),
-        '_id': Id,
-        'place_id': placeId,
-        'name': name,
-        'address': address,
-        'lat': lat,
-        'lng': lng,
-      };
+  factory Place.fromJson(Map<String, dynamic> json) {
+    return Place(name: json['name']);
+  }
 }

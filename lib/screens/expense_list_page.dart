@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/models/expense_statistics.dart';
 import 'package:provider/provider.dart';
-import '../providers/todo_provider.dart';
+import '../providers/app_provider.dart';
 
 class ExpenseScreen extends StatelessWidget {
   Future<void> onRefresh() async {}
@@ -9,74 +10,62 @@ class ExpenseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainProvider = Provider.of<MainProvider>(context);
     mainProvider.fetchStatistic();
+    ExpenseStatistics es = mainProvider.es;
+    List<CategoryExpenses> ce = es.getCategoryPrice();
 
     return Scaffold(
         appBar: AppBar(
           title: const Text('Expense Tracker'),
         ),
         body: RefreshIndicator(
-          onRefresh: onRefresh,
-          child: ListView(
-            children: <Widget>[
-              const ExpenseItem(
-                category: 'Food',
-                amount: '50.00',
-                date: 'June 20, 2023',
-              ),
-              const ExpenseItem(
-                category: 'Transportation',
-                amount: '25.00',
-                date: 'June 19, 2023',
-              ),
-              const ExpenseItem(
-                category: 'Entertainment',
-                amount: '10.00',
-                date: 'June 18, 2023',
-              ),
-              // Add more expense items as needed
-            ],
-          ),
-        ));
+            onRefresh: onRefresh,
+            child: ListView.builder(
+                itemCount: ce.length,
+                itemBuilder: (context, idx) {
+                  return ExpenseItem(
+                    categoryExpenses: ce[idx],
+                  );
+                })));
   }
 }
 
 class ExpenseItem extends StatelessWidget {
-  final String category;
-  final String amount;
-  final String date;
+  final CategoryExpenses categoryExpenses;
 
   const ExpenseItem({
-    required this.category,
-    required this.amount,
-    required this.date,
+    super.key,
+    required this.categoryExpenses,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () => {print(category)},
+    List<Expense> expenses = categoryExpenses.items;
+    return Card(
+        child: ListTile(
+      onTap: () => {print("")},
       // leading: const CircleAvatar(
       //   child: Icon(Icons.food_bank),
       // ),
-      title: Text(category),
+      title: Text(categoryExpenses.category),
       subtitle: ListView.builder(
         shrinkWrap: true,
         physics: ClampingScrollPhysics(),
-        itemCount: 3,
+        itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
+          Expense expense = expenses[nestedIndex];
+          Place? place = expense.getPlace();
           return ListTile(
-            title: Text('Nested Item $nestedIndex'),
-            leading: Icon(Icons.foggy),
-            trailing: Text('345'),
+            title: Text(place?.getName() ?? ''),
+            trailing: Text(expense.getPrice()),
           );
         },
       ),
       trailing: Text(
-        '\$$amount',
+        categoryExpenses.getTotal(),
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),
-    );
+    ));
   }
 }

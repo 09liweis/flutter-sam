@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttersam/models/todo.dart';
 import 'package:provider/provider.dart';
 import './add_todo_page.dart';
-import '../widgets/todo_list.dart';
-import '../providers/todo_provider.dart';
+import '../../widgets/todo/todo_list.dart';
+import '../../providers/app_provider.dart';
 
 class TodoScreen extends StatelessWidget {
   TodoScreen({super.key});
@@ -20,6 +21,7 @@ class TodoScreen extends StatelessWidget {
     const titleBar = Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        Text("Todo List"),
         Icon(
           Icons.menu,
           color: Colors.white,
@@ -42,10 +44,7 @@ class TodoScreen extends StatelessWidget {
           Expanded(
               child: todoProvider.loading
                   ? loadingWidget
-                  : TodoList(
-                      tasks: todoProvider.tasks,
-                      onPressed: todoProvider.removeTaskAtIndex,
-                    )),
+                  : TodoList(tasks: todoProvider.tasks)),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
@@ -62,7 +61,9 @@ class TodoScreen extends StatelessWidget {
         elevation: 1.4,
         onPressed: () => {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddTodoScreen()))
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddTodoScreen(todo: Todo())))
         },
         child: addTodoIcon,
       ),
