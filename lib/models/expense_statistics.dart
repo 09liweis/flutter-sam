@@ -41,6 +41,10 @@ class CategoryExpenses {
     return total;
   }
 
+  String getCategory() {
+    return category;
+  }
+
   factory CategoryExpenses.fromJson(Map<String, dynamic> json) {
     return CategoryExpenses(
         total: json['total'],
@@ -68,6 +72,10 @@ class Expense {
 
   String getPrice() {
     return price;
+  }
+
+  String getCategory() {
+    return category;
   }
 
   factory Expense.fromJson(Map<String, dynamic> json) {

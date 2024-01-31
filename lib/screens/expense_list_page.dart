@@ -47,7 +47,7 @@ class ExpenseItem extends StatelessWidget {
       // leading: const CircleAvatar(
       //   child: Icon(Icons.food_bank),
       // ),
-      title: Text(categoryExpenses.category),
+      title: Text(categoryExpenses.getCategory()),
       subtitle: ListView.builder(
         shrinkWrap: true,
         physics: ClampingScrollPhysics(),
