@@ -45,6 +45,10 @@ class CategoryExpenses {
     return category;
   }
 
+  List<Expense> getItems() {
+    return items;
+  }
+
   factory CategoryExpenses.fromJson(Map<String, dynamic> json) {
     return CategoryExpenses(
         total: json['total'],

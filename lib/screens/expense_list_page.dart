@@ -40,7 +40,7 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Expense> expenses = categoryExpenses.items;
+    List<Expense> expenses = categoryExpenses.getItems();
     return Card(
         child: ListTile(
       onTap: () => {print("")},
