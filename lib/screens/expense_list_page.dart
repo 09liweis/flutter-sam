@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/app_provider.dart';
 
 class ExpenseScreen extends StatelessWidget {
+  const ExpenseScreen({super.key});
   Future<void> onRefresh() async {}
 
   @override
@@ -39,14 +40,14 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Expense> expenses = categoryExpenses.items;
+    List<Expense> expenses = categoryExpenses.getItems();
     return Card(
         child: ListTile(
       onTap: () => {print("")},
       // leading: const CircleAvatar(
       //   child: Icon(Icons.food_bank),
       // ),
-      title: Text(categoryExpenses.category),
+      title: Text(categoryExpenses.getCategory()),
       subtitle: ListView.builder(
         shrinkWrap: true,
         physics: ClampingScrollPhysics(),
