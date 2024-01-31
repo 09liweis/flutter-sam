@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/app_provider.dart';
 
 class ExpenseScreen extends StatelessWidget {
+  const ExpenseScreen({super.key});
   Future<void> onRefresh() async {}
 
   @override
