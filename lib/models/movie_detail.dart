@@ -2,6 +2,7 @@ import 'package:fluttersam/models/movie.dart';
 
 class MovieDetail extends Movie {
   String summary;
+  List<String> languages;
   MovieDetail(
       {super.id,
       super.title,
@@ -11,7 +12,8 @@ class MovieDetail extends Movie {
       super.imdbRating,
       super.episodes,
       super.currentEpisode,
-      this.summary = ''});
+      this.summary = '',
+      this.languages = const []});
 
   void setSummary(String movieSummary) {
     summary = movieSummary;
@@ -23,5 +25,6 @@ class MovieDetail extends Movie {
 
   MovieDetail.fromJson(Map<String, dynamic> json)
       : summary = json['summary'] ?? '',
+        languages = json['languages'],
         super.fromJson(json);
 }
