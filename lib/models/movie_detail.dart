@@ -23,6 +23,10 @@ class MovieDetail extends Movie {
     return summary;
   }
 
+  List<String> getLanguages() {
+    return languages;
+  }
+
   MovieDetail.fromJson(Map<String, dynamic> json)
       : summary = json['summary'] ?? '',
         languages = json['languages'],
