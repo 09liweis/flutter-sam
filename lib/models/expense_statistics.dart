@@ -87,6 +87,10 @@ class Expense {
     return category;
   }
 
+  String getDate() {
+    return date;
+  }
+
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
         price: json['price'],
