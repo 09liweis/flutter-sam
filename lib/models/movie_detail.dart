@@ -29,6 +29,6 @@ class MovieDetail extends Movie {
 
   MovieDetail.fromJson(Map<String, dynamic> json)
       : summary = json['summary'] ?? '',
-        languages = json['languages'],
+        languages = List<String>.from(json['languages'].map((l) => l)),
         super.fromJson(json);
 }
