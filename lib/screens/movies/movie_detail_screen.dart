@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttersam/models/movie.dart';
 import 'package:fluttersam/providers/app_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,7 @@ class _MovieDetailState extends State<MovieDetailScreen> {
       appBar: AppBar(title: Text(movie.getTitle())),
       body: Center(
         child: loading
-            ? new CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : Text(movieDetail.getSummary()),
       ),
     );
