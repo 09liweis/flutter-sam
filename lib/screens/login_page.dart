@@ -3,10 +3,10 @@ import 'package:fluttersam/screens/profile_screen.dart';
 import 'package:fluttersam/services/api_service.dart';
 import 'package:fluttersam/utils/share_preferences.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import '../widgets/dialog.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Navigate to the profile screen
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => ProfileScreen()),
+          MaterialPageRoute(builder: (context) => const ProfileScreen()),
         );
       } else {
         // Login failed
