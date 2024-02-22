@@ -16,6 +16,7 @@ class MovieService extends ApiService {
             jsonData['movies'].map((task) => Movie.fromJson(task)));
       } catch (e) {
         log(e.toString());
+        print(e);
         throw Exception('Failed to fetch tasks');
       }
     } else {

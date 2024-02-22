@@ -23,11 +23,15 @@ class _MovieDetailState extends State<MovieDetailScreen> {
     final loading = movieProvider.loading;
     return Scaffold(
       appBar: AppBar(title: Text(movie.getTitle())),
-      body: Center(
-        child: loading
-            ? const CircularProgressIndicator()
-            : Text(movieDetail.getSummary()),
-      ),
+      body: Column(children: [
+        Card(
+            child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: loading
+              ? const Center(child: CircularProgressIndicator())
+              : Text(movieDetail.getSummary()),
+        ))
+      ]),
     );
   }
 }
