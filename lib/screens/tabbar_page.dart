@@ -6,6 +6,7 @@ import 'package:fluttersam/screens/tiktok_screen.dart';
 import 'package:fluttersam/utils/share_preferences.dart';
 
 class TabbarScreen extends StatefulWidget {
+  const TabbarScreen({super.key});
   @override
   _TabbarScreenState createState() => _TabbarScreenState();
 }

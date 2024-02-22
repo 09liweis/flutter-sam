@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttersam/models/movie.dart';
 import 'package:fluttersam/providers/app_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -24,11 +23,15 @@ class _MovieDetailState extends State<MovieDetailScreen> {
     final loading = movieProvider.loading;
     return Scaffold(
       appBar: AppBar(title: Text(movie.getTitle())),
-      body: Center(
-        child: loading
-            ? new CircularProgressIndicator()
-            : Text(movieDetail.getSummary()),
-      ),
+      body: Column(children: [
+        Card(
+            child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: loading
+              ? const Center(child: CircularProgressIndicator())
+              : Text(movieDetail.getSummary()),
+        ))
+      ]),
     );
   }
 }

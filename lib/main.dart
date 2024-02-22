@@ -37,8 +37,8 @@ class SamApp extends StatelessWidget {
       home: TabbarScreen(),
       routes: {
         '/todos': (context) => TodoScreen(),
-        '/movies': (context) => MovieScreen(),
-        '/expenses': (context) => ExpenseScreen(),
+        '/movies': (context) => const MovieScreen(),
+        '/expenses': (context) => const ExpenseScreen(),
         '/chat': (context) => ChatMessageScreen()
       },
     );

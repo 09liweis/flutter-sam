@@ -70,6 +70,11 @@ class Expense {
       this.category = '',
       this.date = '',
       this.place});
+
+  String? getTitle() {
+    return title;
+  }
+
   Place? getPlace() {
     return place;
   }
@@ -80,6 +85,10 @@ class Expense {
 
   String getCategory() {
     return category;
+  }
+
+  String getDate() {
+    return date;
   }
 
   factory Expense.fromJson(Map<String, dynamic> json) {
