@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // appBar: AppBar(
       //   title: const Text('Profile'),
       // ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             CircleAvatar(
               radius: 50,
               // backgroundImage: AssetImage('assets/profile_picture.jpg'),
