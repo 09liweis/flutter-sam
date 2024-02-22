@@ -43,14 +43,14 @@ class ExpenseItem extends StatelessWidget {
     List<Expense> expenses = categoryExpenses.getItems();
     return Card(
         child: ListTile(
-      onTap: () => {print("")},
+      onTap: () => {},
       // leading: const CircleAvatar(
       //   child: Icon(Icons.food_bank),
       // ),
       title: Text(categoryExpenses.getCategory()),
       subtitle: ListView.builder(
         shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         itemCount: expenses.length,
         itemBuilder: (context, nestedIndex) {
           Expense expense = expenses[nestedIndex];
