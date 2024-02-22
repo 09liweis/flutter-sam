@@ -34,7 +34,7 @@ class SamApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: TabbarScreen(),
+      home: const TabbarScreen(),
       routes: {
         '/todos': (context) => TodoScreen(),
         '/movies': (context) => const MovieScreen(),
