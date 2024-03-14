@@ -8,7 +8,8 @@ import '../models/movie.dart';
 class MovieService extends ApiService {
   static Future<List<Movie>> fetchMovies(endPoint) async {
     endPoint ??= "";
-    final response = await ApiService.get("movies/" + endPoint);
+    final response =
+        await ApiService.get("movies/" + endPoint + "?imgserver=img9");
     if (response.statusCode == 200) {
       try {
         final jsonData = jsonDecode(response.body);

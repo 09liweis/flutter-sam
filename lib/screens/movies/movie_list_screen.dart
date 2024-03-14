@@ -31,7 +31,7 @@ class MovieScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: 60,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
