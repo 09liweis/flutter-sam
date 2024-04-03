@@ -133,11 +133,20 @@ class MovieCardPoster extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(10))),
-          child: CachedNetworkImage(
-            imageUrl: movie.getPoster(),
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
+          child: ImageWrapper(imageUrl: movie.getPoster()),
         ));
+  }
+}
+
+class ImageWrapper extends StatelessWidget {
+  const ImageWrapper({super.key, required this.imageUrl});
+  final String imageUrl;
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
   }
 }
