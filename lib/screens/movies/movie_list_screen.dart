@@ -18,12 +18,13 @@ class MovieScreen extends StatelessWidget {
 
     List<Map<String, String>> categories = [
       {'url': '', 'tl': 'My Movies'},
-      {'url': 'hongkong', 'tl': 'Hongkong'},
-      {'url': 'imdb_boxoffice', 'tl': 'IMDB'},
-      {'url': 'popular', 'tl': 'Popular'},
-      {'url': 'in_theatre', 'tl': 'In theatre'},
-      {'url': 'comming', 'tl': 'Comming Soon'},
-      {'url': 'chart', 'tl': 'Douban Chart'}
+      {'url': 'cineplex', 'tl': 'Cineplex'},
+      {'url': 'hongkong/coming', 'tl': 'Hongkong'},
+      {'url': 'imdb/boxoffice', 'tl': 'IMDB'},
+      {'url': 'douban/popular', 'tl': 'Popular'},
+      {'url': 'douban/in_theatre', 'tl': 'In theatre'},
+      {'url': 'douban/comming', 'tl': 'Comming Soon'},
+      {'url': 'douban/chart', 'tl': 'Douban Chart'}
     ];
 
     return Scaffold(
