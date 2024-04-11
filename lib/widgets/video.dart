@@ -5,7 +5,7 @@ class TikTokVideo extends StatefulWidget {
   final String videoUrl;
   final String text;
 
-  TikTokVideo({required this.videoUrl, required this.text});
+  const TikTokVideo({super.key, required this.videoUrl, required this.text});
 
   @override
   _TikTokVideoState createState() => _TikTokVideoState();
