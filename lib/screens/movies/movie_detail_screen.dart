@@ -30,6 +30,13 @@ class _MovieDetailState extends State<MovieDetailScreen> {
           child: loading
               ? const Center(child: CircularProgressIndicator())
               : Text(movieDetail.getSummary()),
+        )),
+        Card(
+            child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: loading
+              ? const Center(child: CircularProgressIndicator())
+              : Text(movieDetail.getLanguages().join(', ')),
         ))
       ]),
     );
